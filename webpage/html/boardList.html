@@ -1,51 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 리스트</title>
     <style>
-        #boardContainer{
+        #boardContainer {
             width: 800px;
             margin: 0 auto;
             background: var(--mainLight);
         }
-        #listTitle{
+
+        #listTitle {
             display: flex;
             justify-content: space-around;
             align-items: center;
         }
-        .listItem{
+
+        .listItem {
             /* display: flex;
             justify-content: space-around;
             align-items: center; */
             border-bottom: 1px solid rgb(27, 109, 239);
         }
-        table{
+
+        table {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td{
+
+        th,
+        td {
             border-bottom: 1px solid rgb(27, 109, 239);
             text-align: center;
             padding: 0;
             margin: 0;
         }
-       .listBtns{
-        text-align: end;
-       }
-       .paging{
-        text-align: center;
-       }
-       .paging a{
-        margin:5px;
-       }
-       .searchBar{
-        text-align: center;
-       }
+
+        .listBtns {
+            text-align: end;
+        }
+
+        .paging {
+            text-align: center;
+        }
+
+        .paging a {
+            margin: 5px;
+        }
+
+        .searchBar {
+            text-align: center;
+        }
     </style>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
     <div id="boardContainer">
@@ -136,4 +147,5 @@
         </div>
     </div>
 </body>
+
 </html>

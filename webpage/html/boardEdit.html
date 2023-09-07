@@ -1,46 +1,66 @@
 <!doctype html>
 <html lang="ko">
-  <head>
+
+<head>
   <meta charset="utf-8">
-    <title>글 작성</title>
-    <style>
-        #boardContainer{
-            width: 800px;
-            margin: 0 auto;
-            background: rgb(247, 245, 244);
-        }
-        main{width:1000px; margin:0 auto;}
-        ul, li{margin:10px 0; padding:0; list-style-type:none;}
-        #subject{width:100%; box-sizing: border-box;}
-        #frm li:last-of-type{text-align:center;}
-        
-        
-        .ck-editor__editable[role="textbox"]{
-            min-height:400px;
-        }
-    </style>
-    <link rel="stylesheet" href="../css/style.css">
-  </head>
-  <body>
-    <div id="boardContainer">
-        <form action="" method="POST" id="frm">
-            <ul>
-                <li>제목</li>
-                <li><input type="text" name="subject" id="subject"/></li>
-                <li>내용</li>
-                <li>
-                    <textarea name="content" id="editor"></textarea>
-                </li>
-                <li>
-                    <input type="submit" class="dark" value="등록"/>
-                    <input type="reset" class="btn" value="취소"/>
-                </li>
-            </ul>
-        </form>
-    </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-    <script>
-      ClassicEditor.create( document.querySelector( '#editor' ) );
-    </script>
-  </body>
+  <title>글 작성</title>
+  <style>
+    #boardContainer {
+      width: 800px;
+      margin: 0 auto;
+      background: rgb(247, 245, 244);
+    }
+
+    main {
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    ul,
+    li {
+      margin: 10px 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    #subject {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    #frm li:last-of-type {
+      text-align: center;
+    }
+
+
+    .ck-editor__editable[role="textbox"] {
+      min-height: 400px;
+    }
+  </style>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <div id="boardContainer">
+    <form action="" method="POST" id="frm">
+      <ul>
+        <li>제목</li>
+        <li><input type="text" name="subject" id="subject" /></li>
+        <li>내용</li>
+        <li>
+          <textarea name="content" id="editor"></textarea>
+        </li>
+        <li>
+          <input type="submit" class="dark" value="등록" />
+          <input type="reset" class="btn" value="취소" />
+        </li>
+      </ul>
+    </form>
+  </div>
+  <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+  <script>
+    ClassicEditor.create(document.querySelector('#editor'));
+  </script>
+</body>
+
 </html>
