@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <style>
+        body {
+            background-color: #333;
+        }
+        .logout-form {
+            background-color: gray;
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .logout-form input[type="submit"] {
+            width: 100%;
+            background-color: gold;
+            color: black;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+        }
+        .logout-form input[type="submit"]:hover {
+            opacity: 0.8;
+        }
+        .logout-form h2,
+        .logout-form label,
+        .logout-form input[type="submit"] {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-form">
+        <h2>Logout</h2>
+        <p>정말 로그아웃 하시겠습니까?</p>
+        <form action="/logout" method="post">
+            <input type="submit" value="예(Yes)">
+            <input type="submit" value="아니요(No)">
+        </form>
+    </div>
+</body>
+</html>
