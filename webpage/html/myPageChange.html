@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>마이페이지</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .container {
+            display: flex;
+            margin: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #E8E5E2, #FCB801);
+            color: white;
+        }
+
+        header>div {
+            flex: 1;
+        }
+
+        header #logo {
+            flex: 1;
+            margin: auto;
+            width: 100px;
+            height: auto;
+        }
+
+        header #user-profile {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        header #user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        header #user-profile #logoutButton {
+            margin-left: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        header #user-profile #logoutButton:hover {
+            text-decoration: underline;
+        }
+
+        .main-nav {
+            background-image: linear-gradient(to right, #E8E5E2, #FCB801);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-nav ul {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .main-nav li {
+            position: relative;
+        }
+
+        .main-nav li>ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #E8E5E2;
+            border: 1px solid #fff;
+            z-index: 10;
+        }
+
+        .main-nav li:hover>ul {
+            display: block;
+        }
+
+        .main-nav ul li a {
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .main-nav ul li a:hover {
+            background-color: #E8E5E2;
+            text-decoration: none;
+        }
+
+        .myPageTitle {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #222224;
+            border-bottom: 2px solid #222224;
+            margin-bottom: 10px;
+            display: block;
+            padding-bottom: 5px;
+        }
+
+        .side-nav {
+            width: 200px;
+            background-color: white;
+            border-right: 2px solid #E8E5E2;
+            padding: 20px;
+        }
+
+        .side-nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .side-nav ul li {
+            margin-bottom: 10px;
+        }
+
+        .side-nav ul li a {
+            text-decoration: none;
+            color: #252526;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .side-nav ul li a:hover {
+            color: #FBC128;
+        }
+
+        .side-nav ul li ul {
+            margin-top: 5px;
+            margin-left: 15px;
+        }
+
+        /* 강조 표시를 위한 스타일 */
+        .side-nav ul li a.emphasize {
+            color: #222224;
+            font-weight: bolder;
+        }
+
+        .notification-bar {
+            background-color: #222224;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            flex-grow: 1;
+            background-color: white;
+            padding: 20px;
+            border-left: 1px solid #E8E5E2;
+        }
+
+        button {
+            background-color: #252526;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e1e1e;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Georgia', serif;
+            color: #252526;
+            border-bottom: 2px solid #FBC128;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 16px;
+        }
+
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer {
+            background-color: #252526;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-content {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+        <div id="user-profile">
+            <img src="../../img/profile.png" alt="User Profile Image">
+            <span>사용자 이름</span>
+            <a href="#" id="logoutButton">로그아웃</a>
+        </div>
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <a href="#">재난뉴스 모아보기</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">서울</a></li>
+                    <li><a href="#">경기도</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이페이지</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar">
+    </div>
+    <!-- 사이드 메뉴 & 메인 컨텐츠 -->
+    <div class="container">
+        <!-- 사이드 메뉴 -->
+        <nav class="side-nav">
+            <span class="myPageTitle">마이페이지</span>
+            <ul>
+                <li><a href="#">대피소 표시</a></li>
+                <li><a href="#">개인 관심 지도</a></li>
+                <li>
+                    <a href="#" class="emphasize">설정</a>
+                    <ul>
+                        <li><a href="#" class="emphasize">내정보 수정</a></li>
+                        <li><a href="#" class="emphasize">회원탈퇴</a></li>
+                        <li><a href="#" class="emphasize">관심지역설정</a></li>
+                        <li><a href="#" class="emphasize">카카오톡 알림설정</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">내 게시글 목록</a></li>
+                <li><a href="#">내 댓글 목록</a></li>
+            </ul>
+        </nav>
+        <!-- 메인 컨텐츠 -->
+        <main>
+            <h1>설정</h1>
+            <div class="center-content">
+                <p>비밀번호를 재확인 합니다.</p>
+                <input type="password" id="passwordConfirm" placeholder="비밀번호를 입력해주세요">
+                <br>
+                <button>확인</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+        </div>
+        <button id="backToTop" onclick="scrollToTop()">Top</button>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // 버튼을 클릭했을 때의 이벤트 핸들러
+            $("button").click(function() {
+                // 입력한 비밀번호를 가져옴
+                const password = $("#passwordConfirm").val();
+    
+                // 백엔드로 전송
+                $.ajax({
+                    type: "POST",
+                    url: "/backend-endpoint",
+                    data: { password: password },  // 전송할 데이터
+                    dataType: "json",  // 서버로부터 받을 데이터의 타입을 지정
+                    success: function(response) {
+                        if (response.success) {
+                            // 결과가 true일 경우, myPageChange.html로 리디렉션
+                            window.location.href = "myPageChange.html";
+                        } else {
+                            // 결과가 false일 경우
+                            alert("비밀번호 확인에 실패했습니다. 다시 시도해주세요.");
+                        }
+                    },
+                    error: function() {
+                        // 서버 에러 발생시
+                        alert("서버 오류가 발생했습니다. 나중에 다시 시도해주세요.");
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+
+</html>
