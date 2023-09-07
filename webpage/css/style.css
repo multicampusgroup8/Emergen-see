@@ -18,7 +18,7 @@
     --pointBlue: #1b6cef;
 }
 
-/*버튼 스타일 .btn->흰 버튼, .dark->검정 버튼*/
+/*버튼 스타일 .btn, .dark*/
 button, .btn{
     border: 3px solid var(--mainDark);
     background: var(--mainLight);
