@@ -48,13 +48,17 @@ header #user-profile img {
     margin-right: 10px;
 }
 
-header #user-profile #logoutButton {
+header #user-profile #loginButton,
+#user-profile #registerButton,
+#user-profile #logoutButton {
     margin-left: 10px;
-    color: var(--mainLlighter);
+    color: white;
     text-decoration: none;
 }
 
-header #user-profile #logoutButton:hover {
+header #user-profile #loginButton:hover,
+#user-profile #registerButton:hover,
+#user-profile #logoutButton:hover {
     text-decoration: underline;
 }
 
@@ -189,6 +193,7 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     padding-bottom: 50px;
+    justify-content: center;
 }
 
 h1,
@@ -237,6 +242,12 @@ button:hover,
     background: var(--mainDark);
     color: var(--mainLight);
 }
+
+button:disabled {
+    background-color:var(--mainLight);
+    cursor: not-allowed;
+}
+
 
 /* 어두운 버튼&input */
 button.dark,
