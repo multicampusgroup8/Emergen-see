@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
+    <title>Login</title>
     <style>
         .login-container {
-            width: 400px;
-            padding: 30px;
-            border-radius: 5px;
-            background-color: gray;
-            box-shadow: 0 4px 6p white (0, 0, 0, 0.1);
+            width: 90%;
+            padding: 20px;
+            background-color: #F7F6F3;
+            border: 1px solid #E8E5E2;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+
         input[type="text"],
         input[type="password"] {
             width: 94%;
@@ -24,94 +25,121 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         .keep-login {
-            margin-bottom: 20px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #fbc10a;
-            color: black; 
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .additional-links a {
-            margin-top: 20px;
-            justify-content: space-between;
-            display:flex;
-            color:white;
-           }
-         /* Top 버튼 스타일 */
-        .backToTop {
-            display: none;
-            position: fixed;
-            bottom: 60px;
-            right: 20px;
-            background-color: #333;
-            color: black;
-            border: none;
-            padding: 5px 5px;
-            border-radius: 4px;
-            cursor: pointer;
-            z-index: 1000;
-        }
-        .backToTop:hover {
-            background-color: #555;
-        }
-        footer {
-            width: 100%;
-            text-align: center;
-            color: #555;
-            padding: 10px 0;
-        }
-        .container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: calc(100vh - 40px);
+            justify-content: center;
         }
-        body {
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            background-color: white;
-            margin: 50px;
+
+        .additional-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .additional-links a {
+            margin: 20px;
+            color: #222224;
+            text-decoration: none;
+        }
+
+        .additional-links a:hover {
+            text-decoration: underline;
+        }
+
+        button#loginBtn {
+            width: 100%;
         }
     </style>
-    <title>Login</title>
-    <script src="topButtonScript.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="login-container">
-            <h2>Login</h2>
-            <form action="loginProcess.jsp" method="post">
-                <input type="text" name="username" placeholder="아이디" required>
-                <input type="password" name="password" placeholder="비밀번호" required>
-                <div class="keep-login">
-                    <input type="checkbox" id="keep-login" name="keep-login">
-                    <label for="keep-login">로그인 유지</label>
-                </div>
-                <button type="submit">로그인</button>
-            </form>
-            <div class="additional-links">
-                <a href="register.html">회원가입</a>
-                
-                <a href="findID.html">아이디 찾기</a>
-                
-                <a href="findPassword.html">비밀번호 찾기</a>
-            </div>
+    <!-- 헤더 -->
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+        <div id="user-profile">
+            <a href="login.html" id="loginButton">로그인</a>
+            <a href="register.html" id="registerButton">회원가입</a>
         </div>
-        <!-- Footer Section -->
-        <footer>
-            <div class="footer-content">
-                © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <a href="#">재난뉴스 모아보기</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">서울</a></li>
+                    <li><a href="#">경기도</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이페이지</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar"></div>
+    <main>
+        <div class="container">
+            <div class="login-container">
+                <h2>Login</h2>
+                <form action="loginProcess.jsp" method="post">
+                    <div class="input-group">
+                        <label for="username">아이디:</label>
+                        <input type="text" id="username" name="username" required oninput="checkInput()">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">비밀번호:</label>
+                        <input type="password" id="password" name="password" required oninput="checkInput()">
+                    </div>
+                    <div class="keep-login">
+                        <input type="checkbox" id="keep-login" name="keep-login">
+                        <label for="keep-login">로그인 유지</label>
+                    </div>
+                    <button type="submit" id="loginBtn" disabled>로그인</button>
+                </form>
+                <div class="additional-links">
+                    <a href="register.html">회원가입</a>
+                    <a href="findID.html">아이디 찾기</a>
+                    <a href="findPassword.html">비밀번호 찾기</a>
+                </div>
             </div>
-            <button id="backToTop" onclick="scrollToTop()">Top</button>
-        </footer>
-    </div>
+    </main>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+        </div>
+        <button id="backToTop" onclick="scrollToTop()">Top</button>
+    </footer>
+    <script>
+        function checkInput() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (username && password) {
+                loginBtn.removeAttribute('disabled');
+            } else {
+                loginBtn.setAttribute('disabled', 'disabled');
+            }
+        }
+
+        window.onload = checkInput;
+    </script>
 </body>
 
 </html>

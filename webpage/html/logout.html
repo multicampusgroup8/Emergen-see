@@ -1,59 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
     <title>Logout</title>
     <style>
         body {
             background-color: white;
         }
-        .logout-form {
-            background-color: gray;
-            width: 300px;
-            margin: 0 auto;
+
+        .logout-container {
+            width: 90%;
             padding: 20px;
-            text-align: center;
+            background-color: #F7F5F4;
+            border: 1px solid #E8E5E2;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .logout-form input[type="submit"] {
+
+        .logout-container input[type="submit"] {
             width: 100%;
-            background-color: #fbc10a;
-            color: black;
+            background-color: #222224;
+            color: #f7f5f4;
             padding: 14px 20px;
             margin: 8px 0;
-            border: none;
+            border: 3px solid #222224;
             cursor: pointer;
         }
-        .logout-form input[type="submit"]:hover {
-            opacity: 0.8;
-        }
-        .logout-form h2,
-        .logout-form label,
-        .logout-form input[type="submit"] {
-            font-weight: bold;
-        }
-        /* Footer Section */
-        footer {
-            text-align:center; /* footer 텍스트를 가운데로 정렬 */
+
+        .logout-container input[type="submit"]:hover {
+            background-color: #f7f5f4;
+            color: #222224;
         }
     </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
-    <div class="logout-form">
-        <h2>Logout</h2>
-        <p>정말 로그아웃 하시겠습니까?</p>
-        <form action="/logout" method="post">
-            <input type="submit" value="예(Yes)">
-            <input type="submit" value="아니요(No)">
-        </form>
-    </div>
-     <!-- Footer Section -->
-     <footer>
-            <div class="footer-content">
-                © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+    <!-- 헤더 -->
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+        <div id="user-profile">
+            <img id="profileImg" src="../../img/profile.png" alt="User Profile Image"> <!-- default.png는 기본 프로필 이미지로 설정하였습니다. -->
+            <span id="userName">Loading...</span>
+            <a href="logout.html" id="logoutButton">로그아웃</a>
+        </div>
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <a href="#">재난뉴스 모아보기</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">서울</a></li>
+                    <li><a href="#">경기도</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이페이지</a>
+                <ul>
+                    <li><a href="myPageMap_shelter.html">대피소 표시</a></li>
+                    <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+                    <li><a href="myPageSetting.html">설정</a></li>
+                    <li><a href="myPagePost.html">내 게시글 목록</a></li>
+                    <li><a href="myPageComment.html">내 댓글 목록</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar"></div>
+    <main>
+        <div class="container">
+            <div class="logout-container">
+                <h2>Logout</h2>
+                <form action="/logout" method="post">
+                    <label>정말 로그아웃 하시겠습니까?</label>
+                    <input type="submit" value="예(Yes)">
+                    <input type="submit" value="아니요(No)">
+                </form>
             </div>
-            <button id="backToTop" onclick="scrollToTop()">Top</button>
-     </footer>
+        </div>
+    </main>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+        </div>
+        <button id="backToTop" onclick="scrollToTop()">Top</button>
+    </footer>
 </body>
 
 </html>
-
