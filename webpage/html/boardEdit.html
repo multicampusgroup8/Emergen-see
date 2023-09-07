@@ -3,11 +3,21 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/topButtonScript.js" defer></script>
+  <script src="../js/notification.js" defer></script>
+  <script src="../js/getUserInfo.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <title>글 작성</title>
   <style>
+    .mainContainer {
+      padding: 30px;
+    }
+
     #boardContainer {
       width: 800px;
-      margin: 0 auto;
+      margin: 20px;
+      padding-bottom: 100px;
       background: rgb(247, 245, 244);
     }
 
@@ -41,22 +51,80 @@
 </head>
 
 <body>
-  <div id="boardContainer">
-    <form action="" method="POST" id="frm">
-      <ul>
-        <li>제목</li>
-        <li><input type="text" name="subject" id="subject" /></li>
-        <li>내용</li>
-        <li>
-          <textarea name="content" id="editor"></textarea>
-        </li>
-        <li>
-          <input type="submit" class="dark" value="등록" />
-          <input type="reset" class="btn" value="취소" />
-        </li>
-      </ul>
-    </form>
+  <!-- 헤더 -->
+  <header>
+    <div></div>
+    <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+    <div id="user-profile">
+      <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+      <!-- default.png는 기본 프로필 이미지로 설정하였습니다. -->
+      <span id="userName">Loading...</span>
+      <a href="logout.html" id="logoutButton">로그아웃</a>
+    </div>
+  </header>
+  <!-- 메인 네비게이션 섹션 -->
+  <nav class="main-nav">
+    <ul>
+      <li>
+        <a href="#">재난뉴스 모아보기</a>
+        <!-- 하위 메뉴 -->
+        <ul>
+          <li><a href="#">전체보기</a></li>
+          <li><a href="#">서울</a></li>
+          <li><a href="#">경기도</a></li>
+          <li><a href="#">기타등등</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">긴급상황게시판</a>
+        <!-- 하위 메뉴 -->
+        <ul>
+          <li><a href="#">전체보기</a></li>
+          <li><a href="#">지진</a></li>
+          <li><a href="#">호우</a></li>
+          <li><a href="#">기타등등</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="myPage.html">마이 페이지</a>
+        <ul>
+          <li><a href="myPageMap_shelter.html">대피소 표시</a></li>
+          <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+          <li><a href="myPageSetting.html">설정</a></li>
+          <li><a href="myPagePost.html">내 게시글 목록</a></li>
+          <li><a href="myPageComment.html">내 댓글 목록</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="notification-bar" id="notificationBar">
   </div>
+  <div id="boardContainer">
+    <h1>게시글 작성</h1>
+    <div class="mainContainer">
+      <form action="" method="POST" id="frm">
+        <ul>
+          <li>제목</li>
+          <li><input type="text" name="subject" id="subject" /></li>
+          <li>내용</li>
+          <li>
+            <textarea name="content" id="editor"></textarea>
+          </li>
+          <li>
+            <input type="submit" class="dark" value="등록" />
+            <input type="reset" class="btn" value="취소" />
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-content">
+      © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+    </div>
+    <button id="backToTop" onclick="scrollToTop()">Top</button>
+  </footer>
   <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
   <script>
     ClassicEditor.create(document.querySelector('#editor'));

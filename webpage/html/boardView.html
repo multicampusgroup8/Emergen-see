@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 보기</title>
     <link rel="stylesheet" href="../css/style.css">
-
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
     <style>
+        .mainContainer {
+            padding: 30px;
+            margin-bottom: 70px;
+        }
+
         #boardContainer {
             width: 800px;
             margin: 0 auto;
@@ -17,12 +23,17 @@
         .viewContents {
             width: 100%;
             height: 300px;
+            padding: 5px;
+            border-bottom: 3px solid var(--mainDark);
         }
 
         .viewInfo {
             display: flex;
+            width: 100%;
             justify-content: space-between;
             margin: 0 auto;
+            padding: 5px;
+            border-bottom: 3px solid var(--mainDark);
         }
 
         .left_space {
@@ -35,6 +46,9 @@
 
         .viewBtns {
             text-align: end;
+            width: 100%;
+            padding: 5px;
+            border-bottom: 3px solid var(--mainDark);
         }
 
         td:last-of-type {
@@ -57,115 +71,151 @@
 </head>
 
 <body>
+    <!-- 헤더 -->
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+        <div id="user-profile">
+            <a href="login.html" id="loginButton">로그인</a>
+            <a href="register.html" id="registerButton">회원가입</a>
+        </div>
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <a href="#">재난뉴스 모아보기</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">서울</a></li>
+                    <li><a href="#">경기도</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이페이지</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar"></div>
     <div id="boardContainer">
-        <div id="viewWrap">
-            <div class="viewTitle">
-                <h3>글 제목</h3>
-            </div>
-            <div class="viewInfo">
-                <div class="left_space">
-                    <span>작성자 홍길동</span>
-                    <span>
-                        <button>수정</button>
-                        <button>삭제</button>
-                    </span>
+        <div class="mainContainer">
+            <div id="viewWrap">
+                <div class="viewTitle">
+                    <h3>글 제목</h3>
                 </div>
-                <div class="right_space">
-                    <span>2023-09-07 10:20:05</span>
-                    <span>조회수 3</span>
-                    <span>댓글 3</span>
+                <div class="viewInfo">
+                    <div class="left_space">
+                        <span>작성자 홍길동</span>
+                        <span>
+                            <button>수정</button>
+                            <button>삭제</button>
+                        </span>
+                    </div>
+                    <div class="right_space">
+                        <span>2023-09-07 10:20:05</span>
+                        <span>조회수 3</span>
+                        <span>댓글 3</span>
+                    </div>
+                </div>
+                <div class="viewContents">
+                    본문 작성된 글 내용
+                    <br />
+                    본인 작성 글이면 수정, 삭제 버튼 생김
+                </div>
+                <div class="viewBtns">
+                    <button>추천</button>
+                    <button>공유</button>
+                    <button>신고</button>
                 </div>
             </div>
-            <div class="viewContents">
-                본문 작성된 글 내용
-                <br />
-                본인 작성 글이면 수정, 삭제 버튼 생김
+
+
+            <div id="replyWrap">
+                <table class="replylist">
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col>
+                        <col style="width: 20%;">
+                        <col style="width:5%;">
+                    </colgroup>
+                    <tr>
+                        <td>홍길동</td>
+                        <td>댓글의 내용~~</td>
+                        <td>2023-09-07 10:20:05</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>본인 댓글</td>
+                        <td>맨 오른쪽에 삭제 버튼이 생긴다.</td>
+                        <td>2023-09-07 10:20:05</td>
+                        <td><a href="#">X</a></td>
+                    </tr>
+                    <tr>
+                        <td>유저닉네임</td>
+                        <td><textarea name="" id="" cols="50" rows="3"></textarea></td>
+                        <td><input type="button" class="dark" value="등록"></td>
+                        <td></td>
+                    </tr>
+                </table>
             </div>
-            <div class="viewBtns">
-                <button>추천</button>
-                <button>공유</button>
-                <button>신고</button>
+
+            <div class="boardListWrap">
+                <h5>제목 ex 게시판 최신글/ 이전 글 다음글</h5>
+
+                <table class="boardListSmall">
+                    <colgroup>
+                        <col style="width:50%">
+                        <col style="width:10%">
+                        <col style="width:10%">
+                        <col style="width:10%">
+                        <col style="width:5%">
+                        <col style="width:5%">
+                    </colgroup>
+
+                    <tbody>
+                        <tr>
+                            <td><a href="#"><span>[카테고리] </span>글의 제목
+                                    [<span>0</span>]</a></td>
+                            <td>작성자</td>
+                            <td>지역</td>
+                            <td>작성일</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td><span>[카테고리] </span>글의 제목
+                                [<span>0</span>]</td>
+                            <td>작성자</td>
+                            <td>지역</td>
+                            <td>작성일</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td><span>[카테고리] </span>글의 제목
+                                [<span>0</span>]</td>
+                            <td>작성자</td>
+                            <td>지역</td>
+                            <td>작성일</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+
+                </table>
             </div>
-        </div>
-
-
-        <div id="replyWrap">
-            <table class="replylist">
-                <colgroup>
-                    <col style="width: 20%;">
-                    <col>
-                    <col style="width: 20%;">
-                    <col style="width:5%;">
-                </colgroup>
-                <tr>
-                    <td>홍길동</td>
-                    <td>댓글의 내용~~</td>
-                    <td>2023-09-07 10:20:05</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>본인 댓글</td>
-                    <td>맨 오른쪽에 삭제 버튼이 생긴다.</td>
-                    <td>2023-09-07 10:20:05</td>
-                    <td><a href="#">X</a></td>
-                </tr>
-                <tr>
-                    <td>유저닉네임</td>
-                    <td><textarea name="" id="" cols="50" rows="3"></textarea></td>
-                    <td><input type="button" class="dark" value="등록"></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="boardListWrap">
-            <h5>제목 ex 게시판 최신글/ 이전 글 다음글</h5>
-
-
-
-
-            <table class="boardListSmall">
-                <colgroup>
-                    <col style="width:50%">
-                    <col style="width:10%">
-                    <col style="width:10%">
-                    <col style="width:10%">
-                    <col style="width:5%">
-                    <col style="width:5%">
-                </colgroup>
-
-                <tbody>
-                    <tr>
-
-                        <td><a href="#"><span>[카테고리] </span>글의 제목
-                                [<span>0</span>]</a></td>
-                        <td>작성자</td>
-                        <td>지역</td>
-                        <td>작성일</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td><span>[카테고리] </span>글의 제목
-                            [<span>0</span>]</td>
-                        <td>작성자</td>
-                        <td>지역</td>
-                        <td>작성일</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td><span>[카테고리] </span>글의 제목
-                            [<span>0</span>]</td>
-                        <td>작성자</td>
-                        <td>지역</td>
-                        <td>작성일</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                </tbody>
-
-            </table>
         </div>
     </div>
 </body>

@@ -4,8 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
     <title>게시판 리스트</title>
     <style>
+        .mainContainer {
+            padding: 30px;
+            margin-bottom: 70px;
+        }
+
         #boardContainer {
             width: 800px;
             margin: 0 auto;
@@ -58,94 +65,141 @@
 </head>
 
 <body>
-
+    <!-- 헤더 -->
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+        <div id="user-profile">
+            <a href="login.html" id="loginButton">로그인</a>
+            <a href="register.html" id="registerButton">회원가입</a>
+        </div>
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <a href="#">재난뉴스 모아보기</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">서울</a></li>
+                    <li><a href="#">경기도</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이페이지</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar"></div>
     <div id="boardContainer">
-        <h2>게시판 제목</h2>
-        지역선택
-        <select name="local">
-            <option value="지역1">지역1</option>
-            <option value="지역1">지역2</option>
-            <option value="지역1">지역3</option>
-        </select>
-
-        재난 별 모아보기
-        <a href="#">지진</a>
-        <a href="#">태풍</a>
-        <a href="#">호우</a>
-        <a href="#">폭염</a>
-        <a href="#">강풍</a>
-        <a href="#">전염병</a>
-        <a href="#">전체보기</a>
-
-
-        <table class="boardList">
-            <colgroup>
-                <col style="width:5%">
-                <col style="width:46%">
-                <col style="width:10%">
-                <col style="width:10%">
-                <col style="width:15%">
-                <col style="width:7%">
-                <col style="width:7%">
-            </colgroup>
-            <thead>
-                <tr>
-                    <th scope="col">번호</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">작성자</th>
-                    <th scope="col">지역</th>
-                    <th scope="col">작성일</th>
-                    <th scope="col">조회수</th>
-                    <th scope="col">추천</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr class="listItem">
-                    <td class="boardNum">1</td>
-                    <td class="boardTitle">
-                        <a href="#">지진 발생<span>[0]</span></a>
-                    </td>
-                    <td class="boardWriter">홍길동</td>
-                    <td class="boardLocal">경남</td>
-                    <td class="boardDate">2023-09-07 10:20:05</td>
-                    <td class="boardViews">0</td>
-                    <td class="boardRecommend">0</td>
-                </tr>
-                <tr class="listItem">
-                    <td class="boardNum">1</td>
-                    <td class="boardTitle">
-                        <a href="#">지진 발생<span>[0]</span></a>
-                    </td>
-                    <td class="boardWriter">홍길동</td>
-                    <td class="boardLocal">경남</td>
-                    <td class="boardDate">2023-09-07 10:20:05</td>
-                    <td class="boardViews">0</td>
-                    <td class="boardRecommend">0</td>
-                </tr>
-            </tbody>
-
-        </table>
-
-        <div class="listBtns">
-            <button>글쓰기</button>
-        </div>
-        <div class="paging">
-            <a href="#">◀</a>
-            <a href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a>
-            <a href="#">▶</a>
-        </div>
-        <div class="searchBar">
-            <select name="searchType" id="searchType">
-                <option value="제목+내용">제목+내용</option>
-                <option value="제목">제목</option>
-                <option value="내용">내용</option>
-                <option value="작성자">작성자</option>
+        <div class="mainContainer">
+            <h2>게시판 제목</h2>
+            지역선택
+            <select name="local">
+                <option value="지역1">지역1</option>
+                <option value="지역1">지역2</option>
+                <option value="지역1">지역3</option>
             </select>
-            <input type="search" name="" id="">
-            <button>검색</button>
+
+            재난 별 모아보기
+            <a href="#">지진</a>
+            <a href="#">태풍</a>
+            <a href="#">호우</a>
+            <a href="#">폭염</a>
+            <a href="#">강풍</a>
+            <a href="#">전염병</a>
+            <a href="#">전체보기</a>
+
+            <br>
+            <table class="boardList">
+                <colgroup>
+                    <col style="width:5%">
+                    <col style="width:46%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:15%">
+                    <col style="width:7%">
+                    <col style="width:7%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">지역</th>
+                        <th scope="col">작성일</th>
+                        <th scope="col">조회수</th>
+                        <th scope="col">추천</th>
+                    </tr>
+                </thead>
+                <br>
+                <tbody>
+                    <tr class="listItem">
+                        <td class="boardNum">1</td>
+                        <td class="boardTitle">
+                            <a href="#">지진 발생<span>[0]</span></a>
+                        </td>
+                        <td class="boardWriter">홍길동</td>
+                        <td class="boardLocal">경남</td>
+                        <td class="boardDate">2023-09-07 10:20:05</td>
+                        <td class="boardViews">0</td>
+                        <td class="boardRecommend">0</td>
+                    </tr>
+                    <tr class="listItem">
+                        <td class="boardNum">1</td>
+                        <td class="boardTitle">
+                            <a href="#">지진 발생<span>[0]</span></a>
+                        </td>
+                        <td class="boardWriter">홍길동</td>
+                        <td class="boardLocal">경남</td>
+                        <td class="boardDate">2023-09-07 10:20:05</td>
+                        <td class="boardViews">0</td>
+                        <td class="boardRecommend">0</td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <br>
+            <div class="listBtns">
+                <button>글쓰기</button>
+            </div>
+            <div class="paging">
+                <a href="#">◀</a>
+                <a href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a>
+                <a href="#">▶</a>
+            </div>
+            <br>
+            <div class="searchBar">
+                <select name="searchType" id="searchType">
+                    <option value="제목+내용">제목+내용</option>
+                    <option value="제목">제목</option>
+                    <option value="내용">내용</option>
+                    <option value="작성자">작성자</option>
+                </select>
+                <input type="search" name="" id="">
+                <button>검색</button>
+            </div>
         </div>
     </div>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+        </div>
+        <button id="backToTop" onclick="scrollToTop()">Top</button>
+    </footer>
 </body>
 
 </html>
