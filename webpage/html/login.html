@@ -1,0 +1,115 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .login-container {
+            width: 400px;
+            padding: 30px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .keep-login {
+            margin-bottom: 20px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .additional-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        /* Top 버튼 스타일 */
+        .backToTop {
+            display: none;
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .backToTop:hover {
+            background-color: #555;
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            color: #555;
+            padding: 10px 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 40px);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 50px;
+        }
+    </style>
+    <title>로그인</title>
+    <script src="topButtonScript.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h2>로그인</h2>
+            <form action="loginProcess.jsp" method="post">
+                <input type="text" name="username" placeholder="아이디" required>
+                <input type="password" name="password" placeholder="비밀번호" required>
+                <div class="keep-login">
+                    <input type="checkbox" id="keep-login" name="keep-login">
+                    <label for="keep-login">로그인 유지</label>
+                </div>
+                <button type="submit">로그인</button>
+            </form>
+            <div class="additional-links">
+                <a href="register.html">회원가입</a>
+                <a href="findID.html">아이디 찾기</a>
+                <a href="findPassword.html">비밀번호 찾기</a>
+            </div>
+        </div>
+        <!-- Footer Section -->
+        <footer>
+            <div class="footer-content">
+                © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+            </div>
+            <button id="backToTop" onclick="scrollToTop()">Top</button>
+        </footer>
+    </div>
+</body>
+
+</html>
