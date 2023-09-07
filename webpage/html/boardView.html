@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 보기</title>
+    <style>
+        #boardContainer{
+            background: rgb(247, 245, 244);
+        }
+        .viewContents{
+            width: 100%;
+            height:300px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="boardContainer">
+        <div id="viewWrap">
+            <div class="viewTitle">
+                <h3>글 제목</h3>
+            </div>
+            <div class="viewInfo">
+                <div class="left_space">
+                    <span>작성자 홍길동</span>
+                </div>
+                <div class="right_space">
+                    <span>2023-09-07 10:20:05</span>
+                    <span>조회수 3</span>
+                    <span>댓글 3</span>
+                </div>
+            </div>
+            <div class="viewContents">
+                본문 작성된 글 내용
+            </div>
+            <div class="viewBtns">
+                <button>추천</button>
+                <button>공유</button>
+                <button>신고</button>
+            </div>
+        </div>
+
+
+        <div id="replyWrap">
+            <table class="replylist">
+                <colgroup>
+                    <col style="width: 20%;">
+                    <col>
+                    <col style="width: 20%;">
+                </colgroup>
+                <tr>
+                    <td>홍길동</td>
+                    <td>댓글의 내용~~</td>
+                    <td>2023-09-07 10:20:05</td>
+                </tr>
+                <tr>
+                    <td>유저닉네임</td>
+                    <td><textarea name="" id="" cols="50" rows="3"></textarea></td>
+                    <td><input type="button" value="등록"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
