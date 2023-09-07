@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="topButtonScript.js" defer></script>
-    <script src="notification.js" defer></script>
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
     <title>마이페이지</title>
     <style>
         /* 전체적인 기본 스타일 */
@@ -27,20 +27,30 @@
             align-items: center;
             padding: 10px 20px;
             background-image: linear-gradient(to right, #E8E5E2, #FCB801);
-            /* 그라데이션 적용 */
             color: white;
         }
 
+        header>div {
+            flex: 1;
+            /* 양쪽 빈 div를 같은 크기로 만들어줍니다. */
+        }
+
         header #logo {
+            flex: 1;
+            /* 로고가 중앙에 오도록 설정합니다. */
+            margin: auto;
+            /* 자동 마진으로 좌우 중앙에 배치합니다. */
             width: 150px;
-            /* 이미지의 너비. 필요에 따라 조절하세요. */
             height: auto;
-            /* 이미지의 높이를 자동으로 설정. */
         }
 
         header #user-profile {
             display: flex;
             align-items: center;
+            flex: 1;
+            /* 오른쪽 빈 공간에 배치하기 위해 flex 값을 지정합니다. */
+            justify-content: flex-end;
+            /* 사용자 정보와 로그아웃 버튼을 오른쪽으로 정렬합니다. */
         }
 
         header #user-profile img {
@@ -178,14 +188,17 @@
 
 <body>
     <!-- 헤더 -->
+    <!-- 헤더 -->
     <header>
-        <img id="logo" src="logo.png" alt="EMERGENSEE Logo"> <!-- 로고 이미지 중앙 배치 -->
+        <div></div> <!-- 플렉스 밸런싱을 위한 빈 div -->
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo"> <!-- 로고 이미지 중앙 배치 -->
         <div id="user-profile">
-            <img src="profile.png" alt="User Profile Image">
+            <img src="../../img/profile.png" alt="User Profile Image">
             <span>사용자 이름</span>
-            <a href="#" id="logoutButton">로그아웃</a> <!-- 로그아웃 버튼 추가 -->
+            <a href="#" id="logoutButton">로그아웃</a>
         </div>
     </header>
+
     <div class="notification-bar" id="notificationBar">
     </div>
     <!-- 사이드 메뉴 & 메인 컨텐츠 -->
