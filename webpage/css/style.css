@@ -1,0 +1,45 @@
+/*@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+* {
+ font-family: 'Nanum Gothic Coding', monospace;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+* { 
+ font-family: 'Noto Sans KR', sans-serif;
+}*/
+
+/*컬러*/
+:root{
+    --mainLight: #e8e5e2;
+    --mainLlighter: #f7f5f4;
+    --mainDark: #222224;
+    --pointYellow: #fbc328;
+    --pointBlue: #1b6cef;
+}
+
+/*버튼 스타일 .btn, .dark*/
+button, .btn{
+    border: 3px solid var(--mainDark);
+    background: var(--mainLight);
+    color: var(--mainDark);
+    padding: 2px 15px;
+    font-weight: bold;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+button:hover, .btn:hover{
+    background: var(--mainDark);
+    color: var(--mainLight);
+}
+button.dark, input.dark{
+    border: 3px solid var(--mainDark);
+    background: var(--mainDark);
+    color: var(--mainLight);
+    padding: 2px 15px;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+input.dark:hover{
+    cursor: pointer;
+    background: var(--pointYellow);
+    color: var(--mainDark);
+}
