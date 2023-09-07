@@ -11,7 +11,7 @@
         }
         main{width:1000px; margin:0 auto;}
         ul, li{margin:10px 0; padding:0; list-style-type:none;}
-        #subject{width:100%;}
+        #subject{width:100%; box-sizing: border-box;}
         #frm li:last-of-type{text-align:center;}
         
         
@@ -19,6 +19,7 @@
             min-height:400px;
         }
     </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div id="boardContainer">
@@ -31,8 +32,8 @@
                     <textarea name="content" id="editor"></textarea>
                 </li>
                 <li>
-                    <input type="submit" value="등록"/>
-                    <input type="reset" value="취소"/>
+                    <input type="submit" class="dark" value="등록"/>
+                    <input type="reset" class="btn" value="취소"/>
                 </li>
             </ul>
         </form>

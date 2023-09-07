@@ -6,7 +6,9 @@
     <title>게시판 리스트</title>
     <style>
         #boardContainer{
-            background: rgb(247, 245, 244);
+            width: 800px;
+            margin: 0 auto;
+            background: var(--mainLight);
         }
         #listTitle{
             display: flex;
@@ -21,29 +23,59 @@
         }
         table{
             width: 100%;
+            border-collapse: collapse;
         }
         th, td{
             border-bottom: 1px solid rgb(27, 109, 239);
             text-align: center;
+            padding: 0;
+            margin: 0;
         }
-       .createPost{
+       .listBtns{
         text-align: end;
        }
+       .paging{
+        text-align: center;
+       }
+       .paging a{
+        margin:5px;
+       }
+       .searchBar{
+        text-align: center;
+       }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-
     <div id="boardContainer">
+        <h2>게시판 제목</h2>
+        지역선택
+        <select name="local">
+            <option value="지역1">지역1</option>
+            <option value="지역1">지역2</option>
+            <option value="지역1">지역3</option>
+        </select>
+
+        재난 별 모아보기
+        <a href="#">지진</a>
+        <a href="#">태풍</a>
+        <a href="#">호우</a>
+        <a href="#">폭염</a>
+        <a href="#">강풍</a>
+        <a href="#">전염병</a>
+        <a href="#">전체보기</a>
+
+
         <table class="boardList">
             <colgroup>
                 <col style="width:5%">
-                <col style="width:40%">
+                <col style="width:46%">
+                <col style="width:10%">
+                <col style="width:10%">
                 <col style="width:15%">
-                <col style="width:15%">
-                <col style="width:15%">
-                <col style="width:5%">
-                <col style="width:5%">
+                <col style="width:7%">
+                <col style="width:7%">
             </colgroup>
             <thead>
                 <tr>
@@ -84,8 +116,23 @@
 
         </table>
 
-        <div class="createPost">
+        <div class="listBtns">
             <button>글쓰기</button>
+        </div>
+        <div class="paging">
+            <a href="#">◀</a>
+            <a href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a>
+            <a href="#">▶</a>
+        </div>
+        <div class="searchBar">
+            <select name="searchType" id="searchType">
+                <option value="제목+내용">제목+내용</option>
+                <option value="제목">제목</option>
+                <option value="내용">내용</option>
+                <option value="작성자">작성자</option>
+            </select>
+            <input type="search" name="" id="">
+            <button>검색</button>
         </div>
     </div>
 </body>

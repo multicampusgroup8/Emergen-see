@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 보기</title>
+    <link rel="stylesheet" href="style.css">
+
     <style>
         #boardContainer{
             width: 800px;
             margin: 0 auto;
-            background: rgb(247, 245, 244);
+            background: var(--mainLight);
         }
         .viewContents{
             width: 100%;
@@ -30,6 +32,16 @@
         }
         td:last-of-type{
             text-align: center;
+        }
+        /*중복*/
+        .boardListSmall{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .boardListSmall th, .boardListSmall td{
+            border-bottom: 1px solid rgb(27, 109, 239);
+            padding: 0;
+            margin: 0;
         }
     </style>
 </head>
@@ -84,14 +96,64 @@
                     <td>본인 댓글</td>
                     <td>맨 오른쪽에 삭제 버튼이 생긴다.</td>
                     <td>2023-09-07 10:20:05</td>
-                    <td><a href="#">삭제</a></td>
+                    <td><a href="#">X</a></td>
                 </tr>
                 <tr>
                     <td>유저닉네임</td>
                     <td><textarea name="" id="" cols="50" rows="3"></textarea></td>
-                    <td><input type="button" value="등록"></td>
+                    <td><input type="button" class="dark" value="등록"></td>
                     <td></td>
                 </tr>
+            </table>
+        </div>
+
+        <div class="boardListWrap">
+            <h5>제목 ex 게시판 최신글/ 이전 글 다음글</h5>
+
+
+           
+
+            <table class="boardListSmall">
+                <colgroup>
+                    <col style="width:50%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:5%">
+                    <col style="width:5%">
+                </colgroup>
+
+                <tbody>
+                    <tr>
+                        
+                       <td><a href="#"><span>[카테고리] </span>글의 제목
+                        [<span>0</span>]</a></td>
+                       <td>작성자</td>
+                       <td>지역</td>
+                       <td>작성일</td>
+                       <td>1</td>
+                       <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><span>[카테고리] </span>글의 제목
+                         [<span>0</span>]</td>
+                        <td>작성자</td>
+                        <td>지역</td>
+                        <td>작성일</td>
+                        <td>1</td>
+                        <td>1</td>
+                     </tr>
+                     <tr>
+                        <td><span>[카테고리] </span>글의 제목
+                         [<span>0</span>]</td>
+                        <td>작성자</td>
+                        <td>지역</td>
+                        <td>작성일</td>
+                        <td>1</td>
+                        <td>1</td>
+                     </tr>
+                </tbody>
+
             </table>
         </div>
     </div>
