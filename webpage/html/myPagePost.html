@@ -8,6 +8,10 @@
     <script src="../js/notification.js" defer></script>
     <script src="../js/getUserInfo.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module">
+        import { fetchData } from './getPost&Comment.js';
+        fetchData('/path/to/posts', '#post-table tbody', 'post');
+    </script>
     <title>마이페이지_내게시물목록</title>
     <style>
         button#updateSettings {
@@ -162,7 +166,6 @@
             </div>
         </main>
     </div>
-
     <!-- Footer Section -->
     <footer>
         <div class="footer-content">
@@ -170,33 +173,6 @@
         </div>
         <button id="backToTop" onclick="scrollToTop()">Top</button>
     </footer>
-    <script>
-        function fetchPosts() {
-            return Promise.resolve([
-                { id: 1, title: "첫 번째 게시글" },
-                { id: 2, title: "두 번째 게시글" },
-            ]);
-        }
-
-        fetchPosts().then(posts => {
-            const postTableBody = document.querySelector('#post-table tbody');
-
-            posts.forEach(post => {
-                const row = document.createElement('tr');
-
-                const idCell = document.createElement('td');
-                idCell.innerText = post.id;
-                row.appendChild(idCell);
-
-                const titleCell = document.createElement('td');
-                titleCell.innerText = post.title;
-                row.appendChild(titleCell);
-
-                postTableBody.appendChild(row);
-            });
-        });
-
-    </script>
 </body>
 
 </html>

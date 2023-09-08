@@ -8,6 +8,10 @@
     <script src="../js/notification.js" defer></script>
     <script src="../js/getUserInfo.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module">
+        import { fetchData } from './getPost&Comment.js';
+        fetchData('/path/to/comments', '#comment-table tbody', 'comment');
+    </script>
     <title>마이페이지_내댓글목록</title>
     <style>
         /* 표 스타일 */
@@ -171,33 +175,6 @@
         </div>
         <button id="backToTop" onclick="scrollToTop()">Top</button>
     </footer>
-    <script>
-        function fetchPosts() {
-            return Promise.resolve([
-                { id: 1, title: "첫 번째 댓글" },
-                { id: 2, title: "두 번째 댓글" },
-            ]);
-        }
-
-        fetchPosts().then(posts => {
-            const postTableBody = document.querySelector('#post-table tbody');
-
-            posts.forEach(post => {
-                const row = document.createElement('tr');
-
-                const idCell = document.createElement('td');
-                idCell.innerText = post.id;
-                row.appendChild(idCell);
-
-                const titleCell = document.createElement('td');
-                titleCell.innerText = post.title;
-                row.appendChild(titleCell);
-
-                postTableBody.appendChild(row);
-            });
-        });
-
-    </script>
 </body>
 
 </html>
