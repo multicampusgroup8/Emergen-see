@@ -14,7 +14,7 @@
         }
 
         #boardContainer {
-            width: 800px;
+            width: 1000px;
             margin: 0 auto;
             background: var(--mainLight);
         }
@@ -25,28 +25,33 @@
             align-items: center;
         }
 
-        .listItem {
-            /* display: flex;
-            justify-content: space-around;
-            align-items: center; */
-            border-bottom: 1px solid rgb(27, 109, 239);
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;
+            border-top: 3px solid var(--mainDark);
+            border-bottom: 3px solid var(--mainDark);
         }
 
-        th,
-        td {
-            border-bottom: 1px solid rgb(27, 109, 239);
+        th{
+            border-bottom: 1px solid var(--mainDark);
+
             text-align: center;
             padding: 0;
             margin: 0;
         }
+        /*rgb(125, 169, 241)*/
+        td {
+            border-bottom: 1px solid var(--pointBlue);
+            text-align: center;
+            padding: 12px 0 6px 0;
+        }
+        tr:hover{
+            background: var(--pointYellow);
+        }
 
         .listBtns {
             text-align: end;
+            margin-top: 10px;
         }
 
         .paging {
@@ -55,10 +60,24 @@
 
         .paging a {
             margin: 5px;
+            color: var(--mainDark);
+        }
+        .paging a:hover{
+            color: var(--pointYellow);
         }
 
         .searchBar {
-            text-align: center;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .searchBar select{
+            margin-right: 7px;
+        }
+        .searchBar input{
+            margin-right: 7px;
+
         }
     </style>
     <link rel="stylesheet" href="../css/style.css">
@@ -106,14 +125,14 @@
     <div id="boardContainer">
         <div class="mainContainer">
             <h2>게시판 제목</h2>
-            지역선택
-            <select name="local">
+             <span>지역선택</span>
+            <select name="local" style="width: 100px; margin:0 5px;">
                 <option value="지역1">지역1</option>
                 <option value="지역1">지역2</option>
                 <option value="지역1">지역3</option>
             </select>
 
-            재난 별 모아보기
+            | 재난 별 모아보기 
             <a href="#">지진</a>
             <a href="#">태풍</a>
             <a href="#">호우</a>
@@ -126,15 +145,15 @@
             <table class="boardList">
                 <colgroup>
                     <col style="width:5%">
-                    <col style="width:46%">
+                    <col>
                     <col style="width:10%">
-                    <col style="width:10%">
-                    <col style="width:15%">
+                    <col style="width:9%">
+                    <col style="width:20%">
                     <col style="width:7%">
                     <col style="width:7%">
                 </colgroup>
                 <thead>
-                    <tr>
+                    <tr height="40px">
                         <th scope="col">번호</th>
                         <th scope="col">제목</th>
                         <th scope="col">작성자</th>
@@ -168,10 +187,32 @@
                         <td class="boardViews">0</td>
                         <td class="boardRecommend">0</td>
                     </tr>
+                    <tr class="listItem">
+                        <td class="boardNum">1</td>
+                        <td class="boardTitle">
+                            <a href="#">지진 발생<span>[0]</span></a>
+                        </td>
+                        <td class="boardWriter">홍길동</td>
+                        <td class="boardLocal">경남</td>
+                        <td class="boardDate">2023-09-07 10:20:05</td>
+                        <td class="boardViews">0</td>
+                        <td class="boardRecommend">0</td>
+                    </tr>
+                    <tr class="listItem">
+                        <td class="boardNum">1</td>
+                        <td class="boardTitle">
+                            <a href="#">지진 발생<span>[0]</span></a>
+                        </td>
+                        <td class="boardWriter">홍길동</td>
+                        <td class="boardLocal">경남</td>
+                        <td class="boardDate">2023-09-07 10:20:05</td>
+                        <td class="boardViews">0</td>
+                        <td class="boardRecommend">0</td>
+                    </tr>
                 </tbody>
 
             </table>
-            <br>
+            
             <div class="listBtns">
                 <button>글쓰기</button>
             </div>
@@ -189,7 +230,7 @@
                     <option value="작성자">작성자</option>
                 </select>
                 <input type="search" name="" id="">
-                <button>검색</button>
+                <button class="dark">검색</button>
             </div>
         </div>
     </div>
