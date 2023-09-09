@@ -59,7 +59,7 @@
             <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
             <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
         </div>
-        
+
     </header>
     <!-- 메인 네비게이션 섹션 -->
     <nav class="main-nav">
@@ -101,64 +101,66 @@
     <!-- 사이드 메뉴 & 메인 컨텐츠 -->
     <div class="container">
         <!-- 사이드 메뉴 -->
-        <nav class="side-nav">
-            <span class="PageTitle">마이 페이지</span>
-            <ul>
-                <li><a href="myPageMap_shelter.html">대피소 표시</a></li>
-                <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
-                <li>
-                    <a href="myPageSetting.html" class="emphasize">설정</a>
-                    <ul>
-                        <li><a href="#" class="emphasize">내정보 수정</a></li>
-                        <li><a href="#" class="emphasize">회원탈퇴</a></li>
-                        <li><a href="#" class="emphasize">관심지역설정</a></li>
-                        <li><a href="#" class="emphasize">카카오톡 알림설정</a></li>
-                    </ul>
-                </li>
-                <li><a href="myPagePost.html">내 게시글 목록</a></li>
-                <li><a href="myPageComment.html">내 댓글 목록</a></li>
-            </ul>
-        </nav>
-        <!-- 메인 컨텐츠 -->
-        <main>
-            <h1>설정</h1>
-            <div class="form-container">
-                <div class="form-group">
-                    <label for="nickname">닉네임:</label>
-                    <input type="text" id="nickname" placeholder="닉네임을 입력해주세요">
-                </div>
+        <div class="main-container">
+            <nav class="side-nav">
+                <span class="PageTitle">마이 페이지</span>
+                <ul>
+                    <li><a href="myPageMap_shelter.html">대피소 표시</a></li>
+                    <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+                    <li>
+                        <a href="myPageSetting.html" class="emphasize">설정</a>
+                        <ul>
+                            <li><a href="#" class="emphasize">내정보 수정</a></li>
+                            <li><a href="#" class="emphasize">회원탈퇴</a></li>
+                            <li><a href="#" class="emphasize">관심지역설정</a></li>
+                            <li><a href="#" class="emphasize">카카오톡 알림설정</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="myPagePost.html">내 게시글 목록</a></li>
+                    <li><a href="myPageComment.html">내 댓글 목록</a></li>
+                </ul>
+            </nav>
+            <!-- 메인 컨텐츠 -->
+            <main>
+                <h1>설정</h1>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="nickname">닉네임:</label>
+                        <input type="text" id="nickname" placeholder="닉네임을 입력해주세요">
+                    </div>
 
-                <div class="form-group">
-                    <label for="password">비밀번호:</label>
-                    <input type="password" id="password" placeholder="비밀번호를 입력해주세요">
-                </div>
+                    <div class="form-group">
+                        <label for="password">비밀번호:</label>
+                        <input type="password" id="password" placeholder="비밀번호를 입력해주세요">
+                    </div>
 
-                <div class="form-group">
-                    <label for="passwordConfirm">비밀번호 확인:</label>
-                    <input type="password" id="passwordConfirm" placeholder="비밀번호를 다시 입력해주세요">
-                </div>
+                    <div class="form-group">
+                        <label for="passwordConfirm">비밀번호 확인:</label>
+                        <input type="password" id="passwordConfirm" placeholder="비밀번호를 다시 입력해주세요">
+                    </div>
 
-                <p id="passwordError" style="color: red; display: none;">비밀번호가 일치하지 않습니다.</p>
-                <br>
-                <div class="form-group">
-                    <label>회원 탈퇴:</label>
-                    <button id="deleteAccount">회원탈퇴</button>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="location">관심지역 설정:</label>
-                    <input type="text" id="location" placeholder="관심지역을 입력해주세요">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="kakaoNotif">카카오톡 알림설정:</label>
-                    <input type="checkbox" id="kakaoNotif">
-                    <span class="checkbox-description">알림을 수신합니다.</span>
-                </div>
+                    <p id="passwordError" style="color: red; display: none;">비밀번호가 일치하지 않습니다.</p>
+                    <br>
+                    <div class="form-group">
+                        <label>회원 탈퇴:</label>
+                        <button id="deleteAccount">회원탈퇴</button>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="location">관심지역 설정:</label>
+                        <input type="text" id="location" placeholder="관심지역을 입력해주세요">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="kakaoNotif">카카오톡 알림설정:</label>
+                        <input type="checkbox" id="kakaoNotif">
+                        <span class="checkbox-description">알림을 수신합니다.</span>
+                    </div>
 
-                <button id="updateSettings">변경</button>
-            </div>
-        </main>
+                    <button id="updateSettings">변경</button>
+                </div>
+            </main>
+        </div>
     </div>
 
     <!-- Footer Section -->

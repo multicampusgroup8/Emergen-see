@@ -144,6 +144,7 @@
         .info .link {
             color: #5085BB;
         }
+
     </style>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -200,32 +201,57 @@
     </div>
     <!-- 사이드 메뉴 & 메인 컨텐츠 -->
     <div class="container">
-        <!-- 사이드 메뉴 -->
-        <nav class="side-nav">
-            <span class="PageTitle">마이 페이지</span>
-            <ul>
-                <li><a href="myPageMap_shelter.html" class="emphasize">대피소 표시</a></li>
-                <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
-                <li>
-                    <a href="myPageSetting.html">설정</a>
-                    <ul>
-                        <li><a href="#">내정보 수정</a></li>
-                        <li><a href="#">회원탈퇴</a></li>
-                        <li><a href="#">관심지역설정</a></li>
-                        <li><a href="#">카카오톡 알림설정</a></li>
-                    </ul>
-                </li>
-                <li><a href="myPagePost.html">내 게시글 목록</a></li>
-                <li><a href="myPageComment.html">내 댓글 목록</a></li>
-            </ul>
-        </nav>
-        <!-- 메인 컨텐츠 -->
-        <main>
-            <h1>대피소 표시</h1>
-            <div class="form-container">
+        <div class="main-container">
+            <!-- 사이드 메뉴 -->
+            <nav class="side-nav">
+                <span class="PageTitle">마이 페이지</span>
+                <ul>
+                    <li><a href="myPageMap_shelter.html" class="emphasize">대피소 표시</a></li>
+                    <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+                    <li>
+                        <a href="myPageSetting.html">설정</a>
+                        <ul>
+                            <li><a href="#">내정보 수정</a></li>
+                            <li><a href="#">회원탈퇴</a></li>
+                            <li><a href="#">관심지역설정</a></li>
+                            <li><a href="#">카카오톡 알림설정</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="myPagePost.html">내 게시글 목록</a></li>
+                    <li><a href="myPageComment.html">내 댓글 목록</a></li>
+                </ul>
+            </nav>
+            <!-- 메인 컨텐츠 -->
+            <main>
+                <h1>대피소 표시</h1>
+                <div class="form-container">
+                    <img id="map" src="../../img/map_sample3.png" style="width:100%;height:auto;"></img>
+                    <!--
                 <div id="map" style="width:100%;height:350px;"></div>
+                -->
+                
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>대피소 이름</th>
+                            <th>위치</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>분당 OO 대피소</td>
+                            <td>경기도 성남시 분당구 정자일로213번길 18</td>
+                        </tr>
+                        <tr>
+                            <td>성남 OO 대피소</td>
+                            <td>경기도 성남시 수정구 수정로 283</td>
+                        </tr>
+                        <!-- 필요한 만큼 추가 -->
+                    </tbody>
+                </table>
             </div>
-        </main>
+            </main>
+        </div>
     </div>
 
     <!-- Footer Section -->
@@ -235,6 +261,7 @@
         </div>
         <button id="backToTop" onclick="scrollToTop()">Top</button>
     </footer>
+    <!--
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c"></script>
     <script>
@@ -306,7 +333,7 @@
             overlays.forEach(o => o.setMap(null));  // 모든 오버레이를 지도에서 제거
         }
     </script>
-
+-->
 </body>
 
 </html>

@@ -196,6 +196,14 @@ body {
     justify-content: center;
 }
 
+.main-container {
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    
+}
+
 h1,
 h2,
 h3 {
@@ -284,6 +292,36 @@ input.dark:hover {
 
 .input-group label {
     margin-right: 10px;
+}
+
+table {
+    width: 100%;
+    /* 표의 너비 설정 */
+    margin: 20px auto;
+    /* 위 아래 여백 20px, 좌우로 중앙 정렬 */
+    border-collapse: collapse;
+    /* 표 셀의 경계선 합치기 */
+}
+
+th,
+td {
+    border: 1px solid #222224;
+    /* 셀 경계선 설정 */
+    padding: 10px 15px;
+    /* 셀 내부 패딩 설정 */
+    text-align: center;
+    /* 텍스트 중앙 정렬 */
+    width: auto;  /* 셀의 너비를 고정값으로 설정 */
+    max-width: 150px; /* 셀의 최대 너비를 고정값으로 설정 */
+}
+
+th {
+    background-color: #fbc328;
+    /* 헤더 배경색 설정 */
+}
+td {
+    background-color: #fff;
+    /* 헤더 배경색 설정 */
 }
 
 label {
