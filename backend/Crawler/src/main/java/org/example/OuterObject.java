@@ -6,8 +6,4 @@ import java.util.List;
 public class OuterObject {
     public List<InnerObject> disasterSmsList;
     private Object rtnResult;
-
-
-
-
 }
