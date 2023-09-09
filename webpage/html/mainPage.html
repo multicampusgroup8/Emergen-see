@@ -56,22 +56,26 @@
             /* 섹션 내부의 패딩 설정 (20px) */
         }
 
-         /*각 섹션 크기 조절*/
-        .posts{
+        /*각 섹션 크기 조절*/
+        .posts {
             flex: 2;
         }
-        .realtime-search{
+
+        .realtime-search {
             flex: 1;
         }
 
         /*실시간 검색어 내용 스타일*/
-        ol>li{
+        ol>li {
             margin: 1px;
         }
 
         /* 최신 게시글 및 인기 게시글의 스타일 */
         .latest-posts,
         .popular-posts {
+            padding: 0px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
             margin-bottom: 0;
             /* 박스 하단 여백을 제거 */
             /* 박스 사이의 여백을 제거했습니다. */
@@ -211,14 +215,15 @@
             text-align: center;
         }
 
-        #replyWrap{
+        #replyWrap {
             padding: 7px;
             border-bottom: 3px solid var(--mainDark);
         }
-        .replyEdit{
+
+        .replyEdit {
             margin-top: 10px;
         }
-        
+
         .boardListSmall {
             width: 100%;
             border-collapse: collapse;
@@ -226,11 +231,10 @@
 
         .boardListSmall th,
         .boardListSmall td {
-            border-bottom: 1px solid var(--pointBlue);
+            border-bottom: 1px solid var(--mainDark);
             padding: 4px;
             margin: 2px;
         }
-        
     </style>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -296,77 +300,91 @@
                 <div class="posts">
                     <div class="latest-posts">
                         <h3>최신글</h3>
-                        <div class="boardListWrap" id="latestPostsList">           
+                        <div class="boardListWrap" id="latestPostsList">
                             <table class="boardListSmall">
                                 <colgroup>
                                     <col>
                                     <col style="width:14%">
-                                    <col style="width:5%">
-                                    <col style="width:5%">
+                                    <col style="width:12%">
+                                    <col style="width:10%">
                                 </colgroup>
-            
+                                <thead>
+                                    <tr>
+                                        <td>제목</td>
+                                        <td>카테고리</td>
+                                        <td>조회수</td>
+                                        <td>추천</td>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#"><span>[카테고리] </span>글의 제목
+                                        <td><a href="#"><span>[충청] </span>여긴 시원한데
                                                 [<span>0</span>]</a></td>
-                                        <td>지역</td>
+                                        <td>폭염</td>
                                         <td>1</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>[제주] </span>비 오는 거 보여드림
+                                            [<span>0</span>]</td>
+                                        <td>지역</td>
+                                        <td>17</td>
                                         <td>1</td>
                                     </tr>
                                     <tr>
-                                        <td><span>[카테고리] </span>글의 제목
+                                        <td><span>[서울] </span>에어컨, 나의 사랑. 에어컨, 나의 빛. 에어컨, 나의 어둠. 에어컨, 나의 삶.
                                             [<span>0</span>]</td>
                                         <td>지역</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>[카테고리] </span>글의 제목
-                                            [<span>0</span>]</td>
-                                        <td>지역</td>
-                                        <td>1</td>
-                                        <td>1</td>
+                                        <td>24</td>
+                                        <td>3</td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>     
+                        </div>
                     </div>
                     <div class="popular-posts">
                         <h3>인기글</h3>
-                        <div class="boardListWrap" id="popularPostsList">           
+                        <div class="boardListWrap" id="popularPostsList">
                             <table class="boardListSmall">
                                 <colgroup>
                                     <col>
                                     <col style="width:14%">
-                                    <col style="width:5%">
-                                    <col style="width:5%">
+                                    <col style="width:12%">
+                                    <col style="width:10%">
                                 </colgroup>
-            
+                                <thead>
+                                    <tr>
+                                        <td>제목</td>
+                                        <td>카테고리</td>
+                                        <td>조회수</td>
+                                        <td>추천</td>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#"><span>[카테고리] </span>글의 제목
-                                                [<span>0</span>]</a></td>
-                                        <td>지역</td>
-                                        <td>1</td>
-                                        <td>1</td>
+                                        <td><a href="#"><span>[경기] </span>날씨 실화냐
+                                                [<span>10</span>]</a></td>
+                                        <td>폭염</td>
+                                        <td>174</td>
+                                        <td>12</td>
                                     </tr>
                                     <tr>
-                                        <td><span>[카테고리] </span>글의 제목
-                                            [<span>0</span>]</td>
-                                        <td>지역</td>
-                                        <td>1</td>
-                                        <td>1</td>
+                                        <td><span>[제주] </span>다들 덥다 하는데 여긴 비옴ㅋㅋㅋㅋ
+                                            [<span>8</span>]</td>
+                                        <td>호우</td>
+                                        <td>156</td>
+                                        <td>9</td>
                                     </tr>
                                     <tr>
-                                        <td><span>[카테고리] </span>글의 제목
-                                            [<span>0</span>]</td>
-                                        <td>지역</td>
-                                        <td>1</td>
-                                        <td>1</td>
+                                        <td><span>[서울] </span>처서 지나면 시원해진다면서요ㅜㅠㅠㅠㅠ
+                                            [<span>7</span>]</td>
+                                        <td>폭염</td>
+                                        <td>132</td>
+                                        <td>3</td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>           
+                        </div>
                     </div>
                 </div>
 
@@ -374,15 +392,15 @@
                 <div class="realtime-search">
                     <h3>실시간 검색어</h3>
                     <ol style="font-size: 20px;">
-                        <li>내일 태풍</li>
-                        <li>검색어</li>
-                        <li>검검색어</li>
-                        <li>검색어</li>
-                        <li>검색어</li>
-                        <li>검색어</li>
-                        <li>검색어</li>
-                        <li>색어</li>
-                        <li>검색어</li>
+                        <li>폭염 - </li>
+                        <li>폭염 경보 -</li>
+                        <li>폭염 주의보 -</li>
+                        <li>경보 지속 시간 ↑</li>
+                        <li>온도 ↑</li>
+                        <li>국지성 호우 ↑</li>
+                        <li>오늘 날씨 ↓</li>
+                        <li>일사병 ↓</li>
+                        <li>윌리스 하빌랜드 캐리어 ↓</li>
                     </ol>
                 </div>
             </div>
@@ -395,7 +413,7 @@
         </div>
         <button id="backToTop" onclick="scrollToTop()">Top</button>
     </footer>
-<!--    <script type="text/javascript"
+    <!--    <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c"></script>
     <script>
         // 지도를 생성합니다
