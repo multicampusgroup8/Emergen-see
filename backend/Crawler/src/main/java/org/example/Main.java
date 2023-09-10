@@ -109,11 +109,3 @@ public class Main {
 
 }
 
-// Assuming these are the classes (simplified for the example)
-class OuterObject {
-    List<DisasterMessage> disasterSmsList;
-}
-
-class DisasterMessage {
-    String MSG_CN;
-}
