@@ -1,245 +1,184 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/topButtonScript.js" defer></script>
-<script src="../js/notification.js" defer></script>
-<script src="../js/getUserInfo.js" defer></script>
-<script src="../js/admPost.js" defer></script>
-<link rel="stylesheet" href="../css/style.css" type="text/css">
-<style>
-    body {
-        font-family: 'Times New Roman', Times, serif;
-        margin: 0;
-        padding: 0;
-        background-color: #fff;
-    }
-    p{
-        padding: 0px;
-        margin: 0px;
-    }
-    
-    ul,li{
-        list-style: none;
-        margin: 0px;
-        padding: 0px;
-    }
-    
-    .left_nav ul{
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    
-    .left_nav ul li ul {
-        margin-top: 10px;
-        margin-left: 15px;
-    }
-    
-    a:link,a:visited{
-        color:black;
-        text-decoration: none;
-    }
-    .container{
-        display: flex;
-        margin: 50px 20px;
-    }
-    .left_nav {
-        width: 200px;
-        min-width: 150px;
-        background-color: white;
-        border-right: 2px solid #E8E5E2;
-        padding: 20px;
-        margin-top: 5px;
-    }
-    .admpage_title{
-        font-size: 1.5em;
-        font-weight:bold;
-        border-bottom: 2px solid;
-        margin-bottom: 10px;
-        padding-bottom: 5px;
-    }
-    
-    
-    .content_main{
-        border-left: 5px solid #E8E5E2;
-        padding-left: 30px;
-        flex-basis: 70%;
-    }
-    h1,
-    h2,
-    h3 {
-        font-family: 'Georgia', serif;
-        color: #252526;
-        border-bottom: 2px solid #FBC128;
-        padding-bottom: 10px;
-        margin-top: 20px;
-    }
+    <meta charset="UTF-8">
+    <title>게시판 목록</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
+    <script src="../js/getUserInfo.js" defer></script>
+    <script src="../js/admPost.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <style>
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    h1 {
-        font-size: 24px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-
-    h3 {
-        font-size: 16px;
-    }
-    .result ul li{
-        float: left;
-        width: 16.6%;
-    }
-    
-    .result{
-        margin-top: 20px;
-    }
-    .result_text{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border: 1px solid black;
-        padding: 2px;
-    }
-    .searchBtn{
-        float: right;
-    }
-    .search_btn{
-		float: right;
-	}
-     footer {
-        background-color: #252526;
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .hidden{
-		display: none;
-	}
-   
-
-        
-    
-</style>
+        .form-container label,
+        .form-container select,
+        .form-container input,
+        .form-container button, 
+        .form-container span {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body>
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <div id="user-profile">
+                    <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+                    <span id="userName">데이터 로딩 중...</span>
+                    <a href="logout.html" id="logoutButton">로그아웃</a>
+                </div>
+            </li>
+            <li>
+                <a href="boardList.html">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">폭염</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이 페이지</a>
+                <ul>
+                    <li><a href="myPageMap_shelter.html">대피소 표시</a></li>
+                    <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+                    <li><a href="myPageSetting.html">설정</a></li>
+                    <li><a href="myPagePost.html">내 게시글 목록</a></li>
+                    <li><a href="myPageComment.html">내 댓글 목록</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar">
+    </div>
     <div class="container">
-        <!-- 사이드 메뉴 -->
-        <nav class="left_nav">
-            <span class="admpage_title">관리자 페이지</span>
-            <ul>
-                <li>
-                    <ul><p>회원관리</p>
-                        <li><a href="infouser.html">회원정보 조회</a></li>
-                        <li><a href="leaveuser.html">회원탈퇴 관리</a></li>
-                        <li><a href="dormantuser.html">휴면회원 관리</a></li>
-                    </ul>
-                    <ul><p>게시판관리</p>
-                        <li>게시판관리</li>
-                        <li><a href="#">게시물관리</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        
-        <!-- search box -->
-        <div class="content_main">
-            <div class="content_top">
-                <div class="search_board">
+        <div class="main-container">
+            <!-- 사이드 메뉴 -->
+            <nav class="side-nav">
+                <span class="PageTitle">관리자 페이지</span>
+                <ul>
+                    <li>
+                        <a href="#" class="emphasize">회원 관리</a>
+                        <ul>
+                            <li><a href="admin_infoUser.html">회원정보 조회</a></li>
+                            <li><a href="admin_leaveUser.html">회원탈퇴 관리</a></li>
+                            <li><a href="admin_dormantUser.html">휴면회원 관리</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="emphasize">게시판 관리</a>
+                        <ul>
+                            <li><a href="#">게시판 관리</a></li>
+                            <li><a href="admin_boardPage.html" class="emphasize">게시물 관리</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <main>
+                <div class="form-container">
                     <h1>게시물 관리</h1>
-                    <label>게시판 선택</label>
-                    <!-- 메인메뉴 선택 -->
-                    <select id="selectBoard">
-						<option value="">---------선택---------</option>
-                        <option value="disasterBoard">재난정보지도</option>
-                        <option value="emergencyBoard">긴급상황게시판</option>
-                        <option value="newsBoard">재난뉴스모아보기</option>
-                        <option value="linkBoard">재난정보포털링크</option>
-                    </select>
-                    <!-- 서브메뉴 선택 -->
-                    <select id="selectSubBoard">
-						<option value="">--선택--</option>
-					</select>
-                 
+                    <div>
+                        <label>게시판 선택</label>
+                        <!-- 메인메뉴 선택 -->
+                        <select id="selectBoard">
+                            <option value="">---------선택---------</option>
+                            <option value="disasterBoard">재난정보지도</option>
+                            <option value="emergencyBoard">긴급상황게시판</option>
+                            <option value="newsBoard">재난뉴스모아보기</option>
+                            <option value="linkBoard">재난정보포털링크</option>
+                        </select>
+                        <!-- 서브메뉴 선택 -->
+                        <select id="selectSubBoard">
+                            <option value="">--선택--</option>
+                        </select>
+                        <button id="searchButton">검색</button>
+                    </div>
+                    <div>
+                        <label>게시글찾기</label>
+                        <select id="selectPost">
+                            <option value="title">제목</option>
+                            <option value="content">내용</option>
+                            <option value="writer">작성자</option>
+                            <option value="all">전체검색</option>
+                        </select>
+                        <input type="text" id="inputUser" value="">
+                    </div>
+                    <div>
+                        <label>작성일</label>
+                        <button value="today">오늘</button>
+                        <button value="sevenDays">일주일</button>
+                        <button value="oneMonth">한달</button>
+                    </div>
+                    <div>
+                        <label for="startDate">start</label>
+                        <input type="date" id="startDate" />
+                        <label for="endDate">end</label>
+                        <input type="date" id="endDate" />
+                    </div>
+                    <div>
+                        <span>답변상태</span>
+                        <label for="viewAll">전체보기</label>
+                        <input type="radio" id="viewAll" name="answerStatus" value="viewAll" checked>
+                        <label for="completed">답변완료</label>
+                        <input type="radio" id="completed" name="answerStatus" value="completed">
+                        <label for="unanswered">미답변</label>
+                        <input type="radio" id="unanswered" name="answerStatus" value="unanswered">
+                    </div>
+                    <button id="searchBtn" type="submit" value="검색" name="검색">검색</button>
                 </div>
-                <div>
-					<label>게시글찾기</label>
-					<select id="selectPost">
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-						<option value="writer">작성자</option>
-						<option value="all">전체검색</option>
-					</select>
-					<input type="text" id="inputUser" value="">					
-				</div>
-				<div class="buttonGroup">
-					<label>작성일</label>
-					<button value="today">오늘</button>
-	                <button value="sevenDays">일주일</button>
-	                <button value="oneMonth">한달</button>
-					<div>
-						<label for="startDate">start</label>
-						<input type="date" id="startDate" />
-					</div>
-					<div>
-						<label for="endDate">end</label>
-						<input type="date" id="endDate" />
-					</div>	
-				    <input type="hidden" id="answerdType">
-					<input type="hidden" id="dateType" value="today">
-				</div>
-				<div>
-					<span>답변상태</span>
-					<label for="viewAll">전체보기</label>
-				    <input type="radio" id="viewAll" name="answerStatus" value="viewAll" checked>
-				    <label for="completed">답변완료</label>
-				    <input type="radio" id="completed" name="answerStatus" value="completed">
-				    <label for="unanswered">미답변</label>
-				    <input type="radio" id="unanswered" name="answerStatus" value="unanswered">
-				</div>
-				<input type="submit" id="searchBtn" class="search_btn dark" value="검색">
-            </div>
-        
-
-            
-            <div clas="content_bottom">
-                <h1>회원목록</h1>
-                <div id="membersCnt">
-                    <span id="totalCnt">[총 회원수 0명] 검색결과 0명</span>
-                    <input id="banBtn" class="banBtn dark" type="submit" value="탈퇴/삭제" name="탈퇴/삭제">
+                <br>
+                <br>
+                <div class="form-container">
+                    <h1>회원 목록</h1>
+                    <div class="result_text">
+                        <span id="membersCnt">[총 회원수 n 명] 검색결과 n 명</span>
+                        <input class="ban_btn dark" type="submit" value="탈퇴/삭제" name="탈퇴/삭제">
+                        <table id="table">
+                            <thead>
+                                <tr>
+                                    <th>등록일</th>
+                                    <th>이름</th>
+                                    <th>관심지역</th>
+                                    <th>전화번호</th>
+                                    <th>성별</th>
+                                    <th>나이</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>23.08.23</td>
+                                    <td>홍길동</td>
+                                    <td>서울,대구</td>
+                                    <td>010-2222-2222</td>
+                                    <td>남</td>
+                                    <td>50</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="result">
-                    <ul>
-                        <li>등록일</li>
-                        <li>이름</li>
-                        <li>관심지역</li>
-                        <li>전화번호</li>
-                        <li>성별</li>
-                        <li>나이</li>
-                    </ul>
-                    <ul>
-                        <li>23.08.23</li>
-                        <li>홍길동</li>
-                        <li>서울,대구</li>
-                        <li>010-2222-2222</li>
-                        <li>남</li>
-                        <li>50</li>
-                    </ul>
-                </div>  
-            </div>
+            </main>
         </div>
-
-    
+    </div>
     <footer>
         <div class="footer">
             © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
@@ -247,4 +186,5 @@
         <button class="backToTop dark" onclick="scrollToTop()">Top</button>
     </footer>
 </body>
+
 </html>
