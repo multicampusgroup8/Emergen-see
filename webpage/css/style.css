@@ -238,6 +238,11 @@ a:hover{
     text-decoration: underline;
 }
 
+/*댓글span 컬러*/
+span.rplCount{
+    color: var(--pointBlue);
+}
+
 /*기본(밝은) 버튼*/
 button,
 .btn {
