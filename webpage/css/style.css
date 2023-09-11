@@ -16,55 +16,45 @@
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    background-image: linear-gradient(to right, var(--mainLight), var(--pointYellow));
-    color: var(--mainLlighter);
+    background-color: var(--pointYellow);
 }
 
-header>div {
-    flex: 1;
+header > *:first-child, 
+header > *:last-child {
+    text-align: center;
 }
 
 header #logo {
-    flex: 1;
-    margin: auto;
-    width: 100px;
+    width: 250px;
     height: auto;
 }
 
-header #user-profile {
+#user-profile {
     display: flex;
     align-items: center;
-    flex: 1;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
-header #user-profile img {
+#user-profile img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
 }
 
-header #user-profile #loginButton,
+#user-profile #loginButton,
 #user-profile #registerButton,
 #user-profile #logoutButton {
     margin-left: 10px;
-    color:var(--mainLlighter);
+    color:var(--mainDark);
     text-decoration: none;
 }
 
-header #user-profile #loginButton:hover,
-#user-profile #registerButton:hover,
-#user-profile #logoutButton:hover {
-    text-decoration: underline;
-}
-
 .main-nav {
-    background-image: linear-gradient(to right, var(--mainLlighter), var(--pointYellow));
-    box-shadow: 0px 2px 5px var(--mainLight);
+    background-color: var(--pointYellow);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -330,6 +320,14 @@ th {
 td {
     background-color: #fff;
     /* 헤더 배경색 설정 */
+}
+
+td a {
+    color: #222224;
+}
+
+td a:hover {
+    color: #fbc238;
 }
 
 label {
