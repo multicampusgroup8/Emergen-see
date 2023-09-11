@@ -15,10 +15,10 @@
 }
 
 header {
+    min-width: 1000px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 20px;
     background-color: var(--pointYellow);
 }
 
@@ -54,6 +54,7 @@ header #logo {
 }
 
 .main-nav {
+    min-width: 1000px;
     background-color: var(--pointYellow);
     display: flex;
     justify-content: center;
@@ -99,6 +100,7 @@ header #logo {
 }
 
 .notification-bar {
+    min-width: 1000px;
     background-color: var(--mainDark);
     color: var(--mainLlighter);
     text-align: center;
