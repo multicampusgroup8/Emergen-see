@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="style.css" type="text/css">
+<style>
+	body {
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+    }
+    p{
+		padding: 0px;
+		margin: 0px;
+	}
+    
+	ul,li{
+		list-style: none;
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	.left_nav ul{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	
+	.left_nav ul li ul {
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+    
+	a:link,a:visited{
+		color:black;
+		text-decoration: none;
+	}
+	.container{
+		display: flex;
+		margin: 50px 20px;
+	}
+	.left_nav {
+        width: 200px;
+        min-width: 150px;
+        background-color: white;
+        border-right: 2px solid #E8E5E2;
+        padding: 20px;
+        margin-top: 5px;
+    }
+    .admpage_title{
+		font-size: 1.5em;
+		font-weight:bold;
+		border-bottom: 2px solid;
+		margin-bottom: 10px;
+		padding-bottom: 5px;
+	}
+    
+    
+    .content_main{
+		border-left: 5px solid #E8E5E2;
+		padding-left: 30px;
+		flex-basis: 70%;
+	}
+	h1,
+    h2,
+    h3 {
+        font-family: 'Georgia', serif;
+        color: #252526;
+        border-bottom: 2px solid #FBC128;
+        padding-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+    .result ul li{
+		float: left;
+		width: 20%;
+	}
+	
+	.result{
+		margin-top: 20px;
+	}
+	.result_text{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border: 1px solid black;
+		padding: 2px;
+	}
+	.search_btn{
+		float: right;
+	}
+	 footer {
+        background-color: #252526;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #searchBtn{
+		float: right;
+	}
+
+	
+</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 사이드 메뉴 -->
+		<nav class="left_nav">
+			<span class="admpage_title">관리자 페이지</span>
+			<ul>
+				<li>
+					<ul><p>회원관리</p>
+						<li><a href="infouser.html">회원정보 조회</a></li>
+						<li><a href="#">회원탈퇴 관리</a></li>
+						<li><a href="dormantuser.html">휴면회원 관리</a></li>
+					</ul>
+					<ul><p>게시판관리</p>
+						<li>게시판관리</li>
+						<li><a href="boardpage.html">게시물관리</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		
+		<!-- search box -->
+		<div class="content_main">
+			<div class="content_top">
+				<div class="search_user">
+					<h1>회원탈퇴관리</h1>
+					<label>회원정보</label>
+					<select id="selectSearchType">
+						<option value="viewAll">전체보기</option>
+						<option value="name">이름</option>
+						<option value="id">아이디</option>
+						<option value="cellNum">전화번호</option>
+					</select>
+					<input type="text" id="inputUser" value="" name="user_info">
+				</div>
+				<div>
+					<label>탈퇴유형</label>
+					<select id="selectLeaveType">
+						<option value="viewAll">전체보기</option>
+                        <option value="ban">강제탈퇴</option>
+                        <option value="leave">일반탈퇴</option>
+                        <option value="etc">기타</option>
+                    </select>
+					
+				</div>
+				<div id="buttonGroup">
+					<label>기간설정</label>
+					 <button value="today">오늘</button>
+	                <button value="sevenDays">일주일</button>
+	                <button value="oneMonth">한달</button>
+					<div>
+						<label for="startDate">start</label>
+						<input type="date" id="startDate" />
+					</div>
+					<div>
+						<label for="endDate">end</label>
+						<input type="date" id="endDate" />
+						<input id="searchBtn" type="submit" value="검색" name="검색">
+					</div>	
+					<input id="dateType" type="hidden"> 
+				</div>
+				
+			</div>
+			<div clas="content_bottom">
+				<h1>탈퇴회원</h1>
+				<div class="result_text">
+					<span id="membersCnt">[총 회원수n명] 검색결과n명</span>
+					<input class="ban_btn dark" type="submit" value="탈퇴/삭제" name="탈퇴/삭제">
+				</div>
+				<div class="result">
+					<ul>
+						<li>아이디</li>
+						<li>이름</li>
+						<li>탈퇴사유</li>
+						<li>탈퇴날짜</li>
+						<li>가입날짜</li>
+					</ul>
+					<ul>
+						<li>aaabbb</li>
+						<li>홍길동</li>
+						<li>강제탈퇴</li>
+						<li>23-09-15</li>
+						<li>22-08-15</li>
+					</ul>
+				</div>	
+			</div>
+		</div>
+	</div>
+	
+	<footer>
+		<div class="footer">
+			© 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+		</div>
+		<button class="backToTop dark" onclick="scrollToTop()">Top</button>
+	</footer>
+<script src="js/leaveuser.js"></script>
+</body>
+</html>
