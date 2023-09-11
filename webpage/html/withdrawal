@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
+    <title>회원 탈퇴</title>
+   <style>
+	  body {
+    font-family: 'NanumSquare', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--mainLlighter);
+   }
+  .container {
+    display: flex;
+    flex-direction: column; /* 컨텐츠를 세로로 배치 */
+    align-items: center; /* 컨텐츠를 가운데 정렬 */
+    justify-content: center; /* 컨텐츠를 가운데 정렬 */
+ 	text-align: center;
+   }
+    label {
+    display: inline-block; /* 라벨을 인라인 블록 요소로 설정하여 왼쪽 정렬 가능하게 함 */
+    width: 150px; /* 라벨의 너비를 설정 (원하는 크기로 조절) */
+    text-align: left; /* 라벨 텍스트를 왼쪽 정렬로 설정 */
+    margin-right: 10px; /* 라벨과 입력 필드 사이의 간격 (원하는 크기로 조절) */
+}
+   input,
+   textarea {
+    width: 300px; /* 입력 필드의 너비를 100%로 설정하여 부모 요소에 맞춤 */
+    padding: 5px; /* 내부 여백 설정 */
+   }
+
+       
+      
+       
+  </style>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div></div>
+        <img id="logo" src="img/logo.png" alt="EMERGENSEE Logo">
+        <div id="user-profile">
+            <img id="profileImg" src="img/profile.png" alt="User Profile Image">
+            <span id="userName">데이터 로딩 중...</span>
+            <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
+            <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
+            <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
+        </div>
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <a href="#">재난뉴스 모아보기</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">서울</a></li>
+                    <li><a href="#">경기도</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이 페이지</a>
+            </li>
+        </ul>
+    </nav>
+   <div class="notification-bar" id="notificationBar">
+	   
+    </div>
+       <div class="container">
+        <h1>회원 탈퇴</h1>
+        <!-- 아이디 확인 텍스트 -->
+     <form id="withdrawalForm" action="탈퇴_처리_페이지_URL" method="post" onsubmit="return checkPasswords()">
+    <!-- 회원 탈퇴 양식 -->
+
+    <!-- 아이디 확인 텍스트 -->
+    <p>아이디를 확인해주세요: 예시아이디123</p>
+
+    <!-- 비밀번호 입력 -->
+    <div class="input-group">
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+
+    <!-- 비밀번호 확인 입력 -->
+    <div class="input-group">
+        <label for="confirm-password">비밀번호 확인:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+    </div>
+
+    <!-- 탈퇴사유 입력 -->
+    <div class="input-group">
+        <label for="reason">탈퇴사유:</label>
+        <textarea id="reason" name="reason" rows="4" required></textarea>
+    </div>
+
+    <!-- 회원 탈퇴 버튼 -->
+    <button class="btn" type="submit">예</button>
+    <button class="btn" onclick="return cancelWithdrawal()" >아니요</button>
+</form>
+     
+    </div>
+     <footer>
+        <div class="footer-content">
+            © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+        </div>
+        <button id="backToTop" onclick="scrollToTop()">Top</button>
+    </footer>
+  <script>
+    function checkPasswords() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        var passwordPattern = /^.{6,20}$/;
+        var valid = true;
+
+        if (!passwordPattern.test(password)) {
+            alert("비밀번호는 6~20자여야 합니다.");
+            valid = false;
+        }
+
+        if (password !== confirmPassword) {
+            alert('비밀번호와 비밀번호 확인이 일치하지 않습니다. 다시 확인해주세요.');
+            valid = false;
+        }
+
+        return valid;
+    }
+</script>
+</body>
+</html>
