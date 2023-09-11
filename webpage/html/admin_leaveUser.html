@@ -1,221 +1,178 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<link rel="stylesheet" href="style.css" type="text/css">
-<style>
-	body {
-        font-family: 'Times New Roman', Times, serif;
-        margin: 0;
-        padding: 0;
-        background-color: #fff;
-    }
-    p{
-		padding: 0px;
-		margin: 0px;
-	}
-    
-	ul,li{
-		list-style: none;
-		margin: 0px;
-		padding: 0px;
-	}
-	
-	.left_nav ul{
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-	
-	.left_nav ul li ul {
-        margin-top: 10px;
-        margin-left: 15px;
-    }
-    
-	a:link,a:visited{
-		color:black;
-		text-decoration: none;
-	}
-	.container{
-		display: flex;
-		margin: 50px 20px;
-	}
-	.left_nav {
-        width: 200px;
-        min-width: 150px;
-        background-color: white;
-        border-right: 2px solid #E8E5E2;
-        padding: 20px;
-        margin-top: 5px;
-    }
-    .admpage_title{
-		font-size: 1.5em;
-		font-weight:bold;
-		border-bottom: 2px solid;
-		margin-bottom: 10px;
-		padding-bottom: 5px;
-	}
-    
-    
-    .content_main{
-		border-left: 5px solid #E8E5E2;
-		padding-left: 30px;
-		flex-basis: 70%;
-	}
-	h1,
-    h2,
-    h3 {
-        font-family: 'Georgia', serif;
-        color: #252526;
-        border-bottom: 2px solid #FBC128;
-        padding-bottom: 10px;
-        margin-top: 20px;
-    }
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="../js/topButtonScript.js" defer></script>
+	<script src="../js/notification.js" defer></script>
+	<script src="../js/getUserInfo.js" defer></script>
+	<script src="../js/leaveUser.js" defer></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		.form-container h1 {
+			text-align: center;
+			margin-bottom: 20px;
+		}
 
-    h1 {
-        font-size: 24px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-
-    h3 {
-        font-size: 16px;
-    }
-    .result ul li{
-		float: left;
-		width: 20%;
-	}
-	
-	.result{
-		margin-top: 20px;
-	}
-	.result_text{
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border: 1px solid black;
-		padding: 2px;
-	}
-	.search_btn{
-		float: right;
-	}
-	 footer {
-        background-color: #252526;
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    #searchBtn{
-		float: right;
-	}
-
-	
-</style>
+		.form-container label,
+		.form-container select,
+		.form-container input,
+		.form-container button {
+			display: inline-block;
+			margin-right: 10px;
+			vertical-align: middle;
+			justify-content: center;
+			margin-bottom: 10px;
+		}
+	</style>
+	<link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
+	<!-- 헤더 -->
+	<header>
+		<div></div>
+		<img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+	</header>
+	<!-- 메인 네비게이션 섹션 -->
+	<nav class="main-nav">
+		<ul>
+			<li>
+				<div id="user-profile">
+					<img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+					<span id="userName">데이터 로딩 중...</span>
+					<a href="logout.html" id="logoutButton">로그아웃</a>
+				</div>
+			</li>
+			<li>
+				<a href="boardList.html">긴급상황게시판</a>
+				<!-- 하위 메뉴 -->
+				<ul>
+					<li><a href="#">전체보기</a></li>
+					<li><a href="#">지진</a></li>
+					<li><a href="#">호우</a></li>
+					<li><a href="#">폭염</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="myPage.html">마이 페이지</a>
+				<ul>
+					<li><a href="myPageMap_shelter.html">대피소 표시</a></li>
+					<li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+					<li><a href="myPageSetting.html">설정</a></li>
+					<li><a href="myPagePost.html">내 게시글 목록</a></li>
+					<li><a href="myPageComment.html">내 댓글 목록</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<div class="notification-bar" id="notificationBar">
+	</div>
 	<div class="container">
-		<!-- 사이드 메뉴 -->
-		<nav class="left_nav">
-			<span class="admpage_title">관리자 페이지</span>
-			<ul>
-				<li>
-					<ul><p>회원관리</p>
-						<li><a href="infouser.html">회원정보 조회</a></li>
-						<li><a href="#">회원탈퇴 관리</a></li>
-						<li><a href="dormantuser.html">휴면회원 관리</a></li>
-					</ul>
-					<ul><p>게시판관리</p>
-						<li>게시판관리</li>
-						<li><a href="boardpage.html">게시물관리</a></li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
-		
-		<!-- search box -->
-		<div class="content_main">
-			<div class="content_top">
-				<div class="search_user">
-					<h1>회원탈퇴관리</h1>
-					<label>회원정보</label>
-					<select id="selectSearchType">
-						<option value="viewAll">전체보기</option>
-						<option value="name">이름</option>
-						<option value="id">아이디</option>
-						<option value="cellNum">전화번호</option>
-					</select>
-					<input type="text" id="inputUser" value="" name="user_info">
-				</div>
-				<div>
-					<label>탈퇴유형</label>
-					<select id="selectLeaveType">
-						<option value="viewAll">전체보기</option>
-                        <option value="ban">강제탈퇴</option>
-                        <option value="leave">일반탈퇴</option>
-                        <option value="etc">기타</option>
-                    </select>
-					
-				</div>
-				<div id="buttonGroup">
-					<label>기간설정</label>
-					 <button value="today">오늘</button>
-	                <button value="sevenDays">일주일</button>
-	                <button value="oneMonth">한달</button>
-					<div>
-						<label for="startDate">start</label>
-						<input type="date" id="startDate" />
+		<div class="main-container">
+			<!-- 사이드 메뉴 -->
+			<nav class="side-nav">
+				<span class="PageTitle">관리자 페이지</span>
+				<ul>
+					<li>
+						<a href="#" class="emphasize">회원 관리</a>
+						<ul>
+							<li><a href="admin_infoUser.html">회원정보 조회</a></li>
+							<li><a href="admin_leaveUser.html" class="emphasize">회원탈퇴 관리</a></li>
+							<li><a href="admin_dormantUser.html">휴면회원 관리</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">게시판 관리</a>
+						<ul>
+							<li><a href="#">게시판 관리</a></li>
+							<li><a href="admin_boardPage.html">게시물 관리</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<main>
+				<!-- search box -->
+				<div class="content_top">
+					<div class="form-container">
+						<h1>회원탈퇴관리</h1>
+						<div>
+							<label>회원정보</label>
+							<select id="selectSearchType">
+								<option value="viewAll">전체보기</option>
+								<option value="name">이름</option>
+								<option value="id">아이디</option>
+								<option value="cellNum">전화번호</option>
+							</select>
+							<input type="text" id="inputUser" value="" name="user_info">
+							<button id="searchButton">검색</button>
+						</div>
+						<div>
+							<label>탈퇴유형</label>
+							<select id="selectLeaveType">
+								<option value="viewAll">전체보기</option>
+								<option value="ban">강제탈퇴</option>
+								<option value="leave">일반탈퇴</option>
+								<option value="etc">기타</option>
+							</select>
+						</div>
+						<div>
+							<label>기간설정</label>
+							<button value="today">오늘</button>
+							<button value="sevenDays">일주일</button>
+							<button value="oneMonth">한달</button>
+						</div>
+						<div>
+							<label for="startDate">start</label>
+							<input type="date" id="startDate" />
+							<label for="endDate">end</label>
+							<input type="date" id="endDate" />
+							<button id="searchBtn" type="submit" value="검색" name="검색">검색</button>
+						</div>
+						<input id="dateType" type="hidden">
 					</div>
-					<div>
-						<label for="endDate">end</label>
-						<input type="date" id="endDate" />
-						<input id="searchBtn" type="submit" value="검색" name="검색">
-					</div>	
-					<input id="dateType" type="hidden"> 
 				</div>
-				
-			</div>
-			<div clas="content_bottom">
-				<h1>탈퇴회원</h1>
-				<div class="result_text">
-					<span id="membersCnt">[총 회원수n명] 검색결과n명</span>
-					<input class="ban_btn dark" type="submit" value="탈퇴/삭제" name="탈퇴/삭제">
+				<br>
+				<br>
+				<div class="form-container">
+					<h1>탈퇴회원</h1>
+					<div class="result_text">
+						<span id="membersCnt">[총 회원수 n 명] 검색결과 n 명</span>
+						<input class="ban_btn dark" type="submit" value="탈퇴/삭제" name="탈퇴/삭제">
+						<table id="table">
+							<thead>
+								<tr>
+									<th>아이디</th>
+									<th>이름</th>
+									<th>탈퇴사유</th>
+									<th>탈퇴날짜</th>
+									<th>가입날짜</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>aaabbb</td>
+									<td>홍길동</td>
+									<td>강제탈퇴</td>
+									<td>23-09-15</td>
+									<td>22-08-15</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-				<div class="result">
-					<ul>
-						<li>아이디</li>
-						<li>이름</li>
-						<li>탈퇴사유</li>
-						<li>탈퇴날짜</li>
-						<li>가입날짜</li>
-					</ul>
-					<ul>
-						<li>aaabbb</li>
-						<li>홍길동</li>
-						<li>강제탈퇴</li>
-						<li>23-09-15</li>
-						<li>22-08-15</li>
-					</ul>
-				</div>	
-			</div>
+			</main>
 		</div>
 	</div>
-	
 	<footer>
-		<div class="footer">
+		<div class="footer-content">
 			© 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
 		</div>
-		<button class="backToTop dark" onclick="scrollToTop()">Top</button>
+		<button id="backToTop" onclick="scrollToTop()">Top</button>
 	</footer>
-<script src="js/leaveUser.js"></script>
+
 </body>
+
 </html>
