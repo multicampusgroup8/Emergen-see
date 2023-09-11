@@ -16,46 +16,55 @@
 
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: var(--pointYellow);
+    background-image: linear-gradient(to right, var(--mainLight), var(--pointYellow));
+    color: var(--mainLlighter);
 }
 
-header > *:first-child, 
-header > *:last-child {
-    text-align: center;
+header>div {
+    flex: 1;
 }
 
 header #logo {
-    width: 250px;
+    flex: 1;
+    margin: auto;
+    width: 100px;
     height: auto;
 }
 
-
-#user-profile {
+header #user-profile {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    flex: 1;
+    justify-content: flex-end;
 }
 
-#user-profile img {
+header #user-profile img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
 }
 
-#user-profile #loginButton,
+header #user-profile #loginButton,
 #user-profile #registerButton,
 #user-profile #logoutButton {
     margin-left: 10px;
-    color:var(--mainDark);
+    color:var(--mainLlighter);
     text-decoration: none;
 }
 
+header #user-profile #loginButton:hover,
+#user-profile #registerButton:hover,
+#user-profile #logoutButton:hover {
+    text-decoration: underline;
+}
+
 .main-nav {
-    background-color: var(--pointYellow);
+    background-image: linear-gradient(to right, var(--mainLlighter), var(--pointYellow));
+    box-shadow: 0px 2px 5px var(--mainLight);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,14 +72,10 @@ header #logo {
 
 .main-nav ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     list-style-type: none;
-    padding: 0 100px;
-}
-
-.main-nav ul > li:first-child {
-    margin-right: auto;
+    padding: 0;
 }
 
 .main-nav li {
@@ -227,7 +232,10 @@ h4{
 }
 a{
     text-decoration: none;
-
+    color: var(--mainDark);
+}
+a:hover{
+    text-decoration: underline;
 }
 
 /*기본(밝은) 버튼*/
@@ -317,15 +325,6 @@ th {
 td {
     background-color: #fff;
     /* 헤더 배경색 설정 */
-}
-
-td a {
-    color: #222224;
-}
-
-/* hover 상태에서의 색상 */
-td a:hover {
-    color: #fbc238;
 }
 
 label {
