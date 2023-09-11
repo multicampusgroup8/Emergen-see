@@ -58,35 +58,27 @@
     <header>
         <div></div>
         <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
-        <div id="user-profile">
-            <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
-            <span id="userName">데이터 로딩 중...</span>
-            <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
-            <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
-            <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
-        </div>
     </header>
     <!-- 메인 네비게이션 섹션 -->
     <nav class="main-nav">
         <ul>
             <li>
-                <a href="#">재난뉴스 모아보기</a>
-                <!-- 하위 메뉴 -->
-                <ul>
-                    <li><a href="#">전체보기</a></li>
-                    <li><a href="#">서울</a></li>
-                    <li><a href="#">경기도</a></li>
-                    <li><a href="#">기타등등</a></li>
-                </ul>
+                <div id="user-profile">
+                    <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+                    <span id="userName">데이터 로딩 중...</span>
+                    <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
+                    <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
+                    <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
+                </div>
             </li>
             <li>
-                <a href="#">긴급상황게시판</a>
+                <a href="boardList.html">긴급상황게시판</a>
                 <!-- 하위 메뉴 -->
                 <ul>
                     <li><a href="#">전체보기</a></li>
                     <li><a href="#">지진</a></li>
                     <li><a href="#">호우</a></li>
-                    <li><a href="#">기타등등</a></li>
+                    <li><a href="#">폭염</a></li>
                 </ul>
             </li>
             <li>
@@ -132,26 +124,35 @@
                     <table id="table">
                         <thead>
                             <tr>
-                                <th>댓글 번호</th>
-                                <th>댓글 내용</th>
+                                <th style="width: 10%;">댓글 번호</th>
+                                <th style="width: 70%;">댓글 내용</th>
+                                <th style="width: 20%;">작성 일자</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>그러니까요ㅠ</td>
+                                <td><a href="#">그러니까요ㅠ<br><span style="font-size: 0.8em;">[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ
+                                            [6]</span></a></td>
+                                <td>23.09.09.</td>
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>저희 동네도 그래요 ㅠㅠㅠ</td>
+                                <td><a href="#">저희 동네도 그래요 ㅠㅠㅠ<br><span style="font-size: 0.8em;">[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ
+                                            [6]</span></a></td>
+                                <td>23.09.09.</td>
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td>아직 에어컨 못 끄는 중 ㅎ</td>
+                                <td><a href="#">아직 에어컨 못 끄는 중 ㅎ<br><span style="font-size: 0.8em;">[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ
+                                            [6]</span></a></td>
+                                <td>23.09.09.</td>
                             </tr>
                             <tr>
                                 <td>4</td>
-                                <td>지구야 아프지마</td>
+                                <td><a href="#">지구야 아프지마<br><span style="font-size: 0.8em;">[전국] 열대야... 지구를 좀 더 소중히 여겨야
+                                            겠어요... [3]</span></a></td>
+                                <td>23.09.07.</td>
                             </tr>
                         </tbody>
                     </table>

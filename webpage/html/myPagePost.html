@@ -58,19 +58,21 @@
     <header>
         <div></div>
         <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
-        <div id="user-profile">
-            <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
-            <span id="userName">데이터 로딩 중...</span>
-            <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
-            <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
-            <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
-        </div>
     </header>
     <!-- 메인 네비게이션 섹션 -->
     <nav class="main-nav">
         <ul>
             <li>
-                <a href="#">재난뉴스 모아보기</a>
+                <div id="user-profile">
+                    <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+                    <span id="userName">데이터 로딩 중...</span>
+                    <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
+                    <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
+                    <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
+                </div>
+            </li>
+            <li>
+                <a href="boardList.html">재난뉴스 모아보기</a>
                 <!-- 하위 메뉴 -->
                 <ul>
                     <li><a href="#">전체보기</a></li>
@@ -86,7 +88,7 @@
                     <li><a href="#">전체보기</a></li>
                     <li><a href="#">지진</a></li>
                     <li><a href="#">호우</a></li>
-                    <li><a href="#">기타등등</a></li>
+                    <li><a href="#">폭염</a></li>
                 </ul>
             </li>
             <li>
@@ -132,30 +134,36 @@
                     <table id="table">
                         <thead>
                             <tr>
-                                <th>글 번호</th>
-                                <th>제목</th>
+                                <th style="width: 10%;">글<br>번호</th>
+                                <th style="width: 70%;">제목</th>
+                                <th style="width: 20%;">작성 일자</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>요즘 진짜 덥네요ㅠㅠㅠㅠ</td>
+                                <td><a href="#">[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ [6]</a></td>
+                                <td>23.09.09.</td>
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>와 처서 지났는데 아직도 30도 넘음 ㄷㄷ</td>
+                                <td><a href="#">[경기] 와 처서 지났는데 아직도 30도 넘음 ㄷㄷ [2]</a></td>
+                                <td>23.09.09.</td>
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td>열대야... 지구를 좀 더 소중히 여겨야 겠어요...</td>
+                                <td><a href="#">[전국] 열대야... 지구를 좀 더 소중히 여겨야 겠어요... [3]</a></td>
+                                <td>23.09.07.</td>
                             </tr>
                             <tr>
                                 <td>4</td>
-                                <td>헐 정전됨;;;</td>
+                                <td><a href="#">[경기] 헐 정전됨;;; [4]</a></td>
+                                <td>23.09.06.</td>
                             </tr>
                             <tr>
                                 <td>5</td>
-                                <td>안녕하세요~</td>
+                                <td><a href="#">[경기] 안녕하세요~ [5]</a></td>
+                                <td>23.09.06.</td>
                             </tr>
                         </tbody>
                     </table>
