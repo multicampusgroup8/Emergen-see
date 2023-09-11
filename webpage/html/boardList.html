@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/topButtonScript.js" defer></script>
     <script src="../js/notification.js" defer></script>
-    <script src="../js/checkLogin.js" defer></script>
+    <script src="../js/getUserInfo.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>게시판 리스트</title>
     <style>
@@ -90,31 +90,39 @@
     <header>
         <div></div>
         <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+        <div id="user-profile">
+            <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+            <span id="userName">데이터 로딩 중...</span>
+            <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
+            <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
+            <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
+        </div>
     </header>
     <!-- 메인 네비게이션 섹션 -->
     <nav class="main-nav">
         <ul>
             <li>
-                <div id="user-profile">
-                    <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
-                    <span id="userName">데이터 로딩 중...</span>
-                    <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
-                    <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
-                    <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
-                </div>
+                <a href="#">재난뉴스 모아보기</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">서울</a></li>
+                    <li><a href="#">경기도</a></li>
+                    <li><a href="#">기타등등</a></li>
+                </ul>
             </li>
             <li>
-                <a href="boardList.html">긴급상황게시판</a>
+                <a href="#">긴급상황게시판</a>
                 <!-- 하위 메뉴 -->
                 <ul>
                     <li><a href="#">전체보기</a></li>
                     <li><a href="#">지진</a></li>
                     <li><a href="#">호우</a></li>
-                    <li><a href="#">폭염</a></li>
+                    <li><a href="#">기타등등</a></li>
                 </ul>
             </li>
             <li>
-                <a href="myPageMap_shelter.html">마이페이지</a>
+                <a href="myPage.html">마이페이지</a>
             </li>
         </ul>
     </nav>
@@ -123,10 +131,15 @@
         <div class="mainContainer">
             <h2>게시판 제목</h2>
              <span>지역선택</span>
-            <select name="local" style="width: 100px; margin:0 5px;">
-                <option value="지역1">지역1</option>
-                <option value="지역1">지역2</option>
-                <option value="지역1">지역3</option>
+            <select name="local" style="width: 100px; height: 21px; margin:0 5px;">
+                <option value="지역1">지역선택</option>
+                <option value="지역1">서울</option>
+                <option value="지역1">경기</option>
+                <option value="지역1">강원</option>
+                <option value="지역1">충청</option>
+                <option value="지역1">전라</option>
+                <option value="지역1">경상</option>
+                <option value="지역1">제주</option>
             </select>
 
             | 재난 별 모아보기 
@@ -163,48 +176,82 @@
                 <br>
                 <tbody>
                     <tr class="listItem">
-                        <td class="boardNum">1</td>
+                        <td class="boardNum">6</td>
                         <td class="boardTitle">
-                            <a href="#">지진 발생<span>[0]</span></a>
+                            <a href="boardView.html">
+                                <span class="localBullet">[충청] </span>여긴 시원한데<span class="rplCount"> [3]</span>
+                            </a>
                         </td>
                         <td class="boardWriter">홍길동</td>
-                        <td class="boardLocal">경남</td>
+                        <td class="boardCategory">폭염</td>
                         <td class="boardDate">2023-09-07 10:20:05</td>
-                        <td class="boardViews">0</td>
+                        <td class="boardViews">1</td>
                         <td class="boardRecommend">0</td>
+                    </tr>
+                    <tr class="listItem">
+                        <td class="boardNum">5</td>
+                        <td class="boardTitle">
+                            <a href="boardView.html">
+                                <span class="localBullet">[제주] </span>비 오는거 보여드림<span class="rplCount"> [0]</span>
+                            </a>
+                        </td>
+                        <td class="boardWriter">김길동</td>
+                        <td class="boardCategory">기타</td>
+                        <td class="boardDate">2023-09-07 10:20:05</td>
+                        <td class="boardViews">17</td>
+                        <td class="boardRecommend">0</td>
+                    </tr>
+                    <tr class="listItem">
+                        <td class="boardNum">4</td>
+                        <td class="boardTitle">
+                            <a href="boardView.html">
+                                <span class="localBullet">[서울] </span>에어컨, 나의 사랑. 에어컨, 나의 빛. 에어컨, 나의 어둠. 에어컨, 나의 삶.<span class="rplCount"> [0]</span>
+                            </a>
+                        </td>
+                        <td class="boardWriter">박길동</td>
+                        <td class="boardCategory">기타</td>
+                        <td class="boardDate">2023-09-07 10:20:05</td>
+                        <td class="boardViews">24</td>
+                        <td class="boardRecommend">3</td>
+                    </tr>
+                    <tr class="listItem">
+                        <td class="boardNum">3</td>
+                        <td class="boardTitle">
+                            <a href="boardView.html">
+                                <span class="localBullet">[경기] </span>날씨 실화냐<span class="rplCount"> [10]</span>
+                            </a>
+                        </td>
+                        <td class="boardWriter">최길동</td>
+                        <td class="boardCategory">폭염</td>
+                        <td class="boardDate">2023-09-07 10:20:05</td>
+                        <td class="boardViews">174</td>
+                        <td class="boardRecommend">12</td>
+                    </tr>
+                    <tr class="listItem">
+                        <td class="boardNum">2</td>
+                        <td class="boardTitle">
+                            <a href="boardView.html">
+                                <span class="localBullet">[제주] </span>다들 덥다 하는데 여긴 비옴ㅋㅋㅋㅋ<span class="rplCount"> [8]</span>
+                            </a>
+                        </td>
+                        <td class="boardWriter">zl존길동</td>
+                        <td class="boardCategory">호우</td>
+                        <td class="boardDate">2023-09-07 10:20:05</td>
+                        <td class="boardViews">156</td>
+                        <td class="boardRecommend">9</td>
                     </tr>
                     <tr class="listItem">
                         <td class="boardNum">1</td>
                         <td class="boardTitle">
-                            <a href="#">지진 발생<span>[0]</span></a>
+                            <a href="boardView.html">
+                                <span class="localBullet">[서울] </span>처서 지나면 시원해진다면서요ㅜㅠㅠㅠㅠ<span class="rplCount"> [7]</span>
+                            </a>
                         </td>
-                        <td class="boardWriter">홍길동</td>
-                        <td class="boardLocal">경남</td>
+                        <td class="boardWriter">길동love</td>
+                        <td class="boardCategory">폭염</td>
                         <td class="boardDate">2023-09-07 10:20:05</td>
-                        <td class="boardViews">0</td>
-                        <td class="boardRecommend">0</td>
-                    </tr>
-                    <tr class="listItem">
-                        <td class="boardNum">1</td>
-                        <td class="boardTitle">
-                            <a href="#">지진 발생<span>[0]</span></a>
-                        </td>
-                        <td class="boardWriter">홍길동</td>
-                        <td class="boardLocal">경남</td>
-                        <td class="boardDate">2023-09-07 10:20:05</td>
-                        <td class="boardViews">0</td>
-                        <td class="boardRecommend">0</td>
-                    </tr>
-                    <tr class="listItem">
-                        <td class="boardNum">1</td>
-                        <td class="boardTitle">
-                            <a href="#">지진 발생<span>[0]</span></a>
-                        </td>
-                        <td class="boardWriter">홍길동</td>
-                        <td class="boardLocal">경남</td>
-                        <td class="boardDate">2023-09-07 10:20:05</td>
-                        <td class="boardViews">0</td>
-                        <td class="boardRecommend">0</td>
+                        <td class="boardViews">132</td>
+                        <td class="boardRecommend">3</td>
                     </tr>
                 </tbody>
 
