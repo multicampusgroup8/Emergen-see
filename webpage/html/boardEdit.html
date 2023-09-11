@@ -40,7 +40,7 @@
 
     #frm li:last-of-type {
       text-align: center;
-    } 
+    }
 
 
     .ck-editor__editable[role="textbox"] {
@@ -55,25 +55,35 @@
   <header>
     <div></div>
     <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+    <div id="user-profile">
+      <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+      <span id="userName">데이터 로딩 중...</span>
+      <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
+      <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
+      <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
+  </div>>
   </header>
   <!-- 메인 네비게이션 섹션 -->
   <nav class="main-nav">
     <ul>
       <li>
-        <div id="user-profile">
-          <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
-          <span id="userName">데이터 로딩 중...</span>
-          <a href="logout.html" id="logoutButton"">로그아웃</a>
-        </div>
+        <a href="#">재난뉴스 모아보기</a>
+        <!-- 하위 메뉴 -->
+        <ul>
+          <li><a href="#">전체보기</a></li>
+          <li><a href="#">서울</a></li>
+          <li><a href="#">경기도</a></li>
+          <li><a href="#">기타등등</a></li>
+        </ul>
       </li>
       <li>
-        <a href="boardList.html">긴급상황게시판</a>
+        <a href="#">긴급상황게시판</a>
         <!-- 하위 메뉴 -->
         <ul>
           <li><a href="#">전체보기</a></li>
           <li><a href="#">지진</a></li>
           <li><a href="#">호우</a></li>
-          <li><a href="#">폭염</a></li>
+          <li><a href="#">기타등등</a></li>
         </ul>
       </li>
       <li>
@@ -92,9 +102,18 @@
   </div>
   <div id="boardContainer">
     <h1>게시글 작성</h1>
-    <div class="mainContainer">
+    <div class="mainContainer"> 
       <form action="" method="POST" id="frm">
         <ul>
+          <li>지역선택</li>
+          <li>
+            <select name="local" style="width: 100px; height: 21px;">
+              <option value="지역1">지역1</option>
+              <option value="지역2">지역2</option>
+              <option value="지역3">지역3</option>
+            </select>
+          </li>
+          </li>
           <li>제목</li>
           <li><input type="text" name="subject" id="subject" /></li>
           <li>내용</li>
