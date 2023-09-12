@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
+    <!--<script src="../js/getUserInfo.js" defer></script>-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c&libraries=clusterer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>카카오 지도 API 사용 예제</title>
+    <style>
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            justify-content: space-between;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group label {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .form-group input {
+            flex: 2;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #E8E5E2;
+        }
+
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wrap {
+            position: absolute;
+            left: 0;
+            bottom: 40px;
+            width: 288px;
+            height: 132px;
+            margin-left: -144px;
+            text-align: left;
+            overflow: hidden;
+            font-size: 12px;
+            font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+            line-height: 1.5;
+        }
+
+        .wrap * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap .info {
+            width: 286px;
+            height: 120px;
+            border-radius: 5px;
+            border-bottom: 2px solid #ccc;
+            border-right: 1px solid #ccc;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .wrap .info:nth-child(1) {
+            border: 0;
+            box-shadow: 0px 1px 2px #888;
+        }
+
+        .info .title {
+            padding: 5px 0 0 10px;
+            height: 30px;
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .info .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #888;
+            width: 17px;
+            height: 17px;
+            background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+        }
+
+        .info .close:hover {
+            cursor: pointer;
+        }
+
+        .info .body {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info .desc {
+            position: relative;
+            margin: 13px 0 0 90px;
+            height: 75px;
+        }
+
+        .desc .ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .desc .jibun {
+            font-size: 11px;
+            color: #888;
+            margin-top: -2px;
+        }
+
+        .info .img {
+            position: absolute;
+            top: 6px;
+            left: 5px;
+            width: 73px;
+            height: 71px;
+            border: 1px solid #ddd;
+            color: #888;
+            overflow: hidden;
+        }
+
+        .info:after {
+            content: '';
+            position: absolute;
+            margin-left: -12px;
+            left: 50%;
+            bottom: 0;
+            width: 22px;
+            height: 12px;
+            background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+        }
+
+        .info .link {
+            color: #5085BB;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <div id="user-profile">
+                    <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+                    <span id="userName">데이터 로딩 중...</span>
+                    <a href="logout.html" id="logoutButton">로그아웃</a>
+                </div>
+            </li>
+            <li>
+                <a href="boardList.html">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">폭염</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이 페이지</a>
+                <ul>
+                    <li><a href="myPageMap_shelter.html">대피소 표시</a></li>
+                    <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+                    <li><a href="myPageSetting.html">설정</a></li>
+                    <li><a href="myPagePost.html">내 게시글 목록</a></li>
+                    <li><a href="myPageComment.html">내 댓글 목록</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar">
+    </div>
+    <!-- 사이드 메뉴 & 메인 컨텐츠 -->
+    <div class="container">
+        <div class="main-container">
+            <!-- 사이드 메뉴 -->
+            <nav class="side-nav">
+                <span class="PageTitle">마이 페이지</span>
+                <ul>
+                    <li><a href="myPageMap_shelter.html" class="emphasize">대피소 표시</a></li>
+                    <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+                    <li>
+                        <a href="myPageSetting.html">설정</a>
+                        <ul>
+                            <li><a href="#">내정보 수정</a></li>
+                            <li><a href="#">회원탈퇴</a></li>
+                            <li><a href="#">관심지역설정</a></li>
+                            <li><a href="#">카카오톡 알림설정</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="myPagePost.html">내 게시글 목록</a></li>
+                    <li><a href="myPageComment.html">내 댓글 목록</a></li>
+                </ul>
+            </nav>
+            <!-- 메인 컨텐츠 -->
+            <main>
+                <h1>대피소 표시</h1>
+                <div class="form-container">
+                    <div id="map" style="width:100%;height:350px;"></div>
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th>대피소 이름</th>
+                                <th>위치</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>분당 OO 대피소</td>
+                                <td>경기도 성남시 분당구 정자일로213번길 18</td>
+                            </tr>
+                            <tr>
+                                <td>성남 OO 대피소</td>
+                                <td>경기도 성남시 수정구 수정로 283</td>
+                            </tr>
+                            <!-- 필요한 만큼 추가 -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+        </div>
+        <button id="backToTop" onclick="scrollToTop()">Top</button>
+    </footer>
+
+    <script>
+        var mapContainer = document.getElementById('map'),
+            mapOption = {
+                center: new kakao.maps.LatLng(37.38, 127.1069),
+                level: 10
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map,
+            averageCenter: true,
+            minLevel: 10,
+            disableClickZoom: true
+        });
+
+        $.get("../../img/chicken.json", function (data) {
+            var markers = $(data.positions).map(function (i, position) {
+                return new kakao.maps.Marker({
+                    position: new kakao.maps.LatLng(position.lat, position.lng)
+                });
+            });
+            clusterer.addMarkers(markers);
+        });
+
+        kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
+            var level = map.getLevel() - 1;
+            map.setLevel(level, { anchor: cluster.getCenter() });
+        });
+
+        var positions = [
+            {
+                title: '분당',
+                latlng: new kakao.maps.LatLng(37.37470492434092, 127.10686101131469)
+            },
+            {
+                title: '성남',
+                latlng: new kakao.maps.LatLng(37.357486075952124, 127.10712442702211)
+            }
+        ];
+
+        var imageSrc = "../../img/sheltermarker.png";
+
+        for (var i = 0; i < positions.length; i++) {
+            var imageSize = new kakao.maps.Size(35, 35);
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: positions[i].latlng,
+                title: positions[i].title,
+                image: markerImage
+            });
+        }
+
+        var content = '<div class="wrap">' +
+            '    <div class="info">' +
+            '        <div class="title">' +
+            '            분당파크뷰 대피소' +
+            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+            '        </div>' +
+            '        <div class="body">' +
+            '            <div class="img">' +
+            '                <img src="../../img/shelter.png" width="73" height="70">' +
+            '           </div>' +
+            '            <div class="desc">' +
+            '                <div class="ellipsis">성남시 분당구 정자일로 248</div>' +
+            '                <div class="jibun ellipsis">(우) 13554 (지번)정자동 6 </div>' +
+            '                <div><a href="https://place.map.kakao.com/12314865" target="_blank" class="link">가시는 방법</a></div>' +
+            '            </div>' +
+            '        </div>' +
+            '    </div>' +
+            '</div>';
+
+        var overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            map: map,
+            position: new kakao.maps.LatLng(37.37470492434092, 127.10686101131469),
+            zIndex:10
+        });
+
+        kakao.maps.event.addListener(marker, 'click', function () {
+            overlay.setMap(map);
+        });
+
+        function closeOverlay() {
+            overlay.setMap(null);
+        }
+    </script>
+</body>
+
+</html>

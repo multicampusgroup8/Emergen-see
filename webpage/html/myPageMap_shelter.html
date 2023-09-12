@@ -8,6 +8,8 @@
     <script src="../js/notification.js" defer></script>
     <!--<script src="../js/getUserInfo.js" defer></script>-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c&libraries=clusterer"></script>
     <title>마이페이지_대피소</title>
     <style>
         .form-group {
@@ -144,7 +146,6 @@
         .info .link {
             color: #5085BB;
         }
-
     </style>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -215,31 +216,27 @@
             <main>
                 <h1>대피소 표시</h1>
                 <div class="form-container">
-                    <img id="map" src="../../img/map_sample3.png" style="width:100%;height:auto;"></img>
-                    <!--
-                <div id="map" style="width:100%;height:350px;"></div>
-                -->
-                
-                <table id="table">
-                    <thead>
-                        <tr>
-                            <th>대피소 이름</th>
-                            <th>위치</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>분당 OO 대피소</td>
-                            <td>경기도 성남시 분당구 정자일로213번길 18</td>
-                        </tr>
-                        <tr>
-                            <td>성남 OO 대피소</td>
-                            <td>경기도 성남시 수정구 수정로 283</td>
-                        </tr>
-                        <!-- 필요한 만큼 추가 -->
-                    </tbody>
-                </table>
-            </div>
+                    <div id="map" style="width:100%;height:350px;"></div>
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th>대피소 이름</th>
+                                <th>위치</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>분당 파크뷰 대피소</td>
+                                <td>경기도 성남시 분당구 정자일로 248</td>
+                            </tr>
+                            <tr>
+                                <td>분당 상록마을 임광보성아파트 대피소</td>
+                                <td>경기도 성남시 분당구 정자일로 80</td>
+                            </tr>
+                            <!-- 필요한 만큼 추가 -->
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>
@@ -251,79 +248,95 @@
         </div>
         <button id="backToTop" onclick="scrollToTop()">Top</button>
     </footer>
-    <!--
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c"></script>
     <script>
-        // 지도를 생성합니다
-        var container = document.getElementById('map');
-        var options = {
-            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표 (임시로 서울시청 좌표로 설정했습니다)
-            level: 3 // 지도의 확대 레벨
-        };
+        var mapContainer = document.getElementById('map'),
+            mapOption = {
+                center: new kakao.maps.LatLng(37.38, 127.1069),
+                level: 10
+            };
 
-        var map = new kakao.maps.Map(container, options);
-        var overlays = [];  // 오버레이를 저장할 배열
-        // 1. AJAX 호출을 통한 백엔드 정보 가져오기
-        fetch('/path/to/backend/data') // 백엔드 API 엔드포인트로 수정
-            .then(response => response.json())
-            .then(data => {
-                // 2. 받아온 데이터 파싱
-                // 이 예시에서는 백엔드에서 바로 사용할 수 있는 형태의 JSON을 전송한다고 가정합니다.
+        var map = new kakao.maps.Map(mapContainer, mapOption);
 
-                // 3. 파싱한 데이터를 통한 마커 및 오버레이 생성
-                for (let item of data) {
-                    // 마커 생성
-                    let markerPosition = new kakao.maps.LatLng(item.lat, item.lng);
-                    let marker = new kakao.maps.Marker({
-                        position: markerPosition,
-                        title: item.title
-                    });
-                    marker.setMap(map);
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map,
+            averageCenter: true,
+            minLevel: 10,
+            disableClickZoom: true
+        });
 
-                    // 오버레이 생성
-                    let content = `
-                <div class="wrap">
-                    <div class="info">
-                        <div class="title">
-                            ${item.title}
-                            <div class="close" onclick="closeOverlay()" title="닫기"></div>
-                        </div>
-                        <div class="body">
-                            <div class="img">
-                                <img src="${item.imgURL}" width="73" height="70">
-                            </div>
-                            <div class="desc">
-                                <div class="ellipsis">${item.address}</div>
-                                <div class="jibun ellipsis">${item.additionalInfo}</div>
-                                <div><a href="${item.link}" target="_blank" class="link">홈페이지</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-                    let overlay = new kakao.maps.CustomOverlay({
-                        content: content,
-                        position: markerPosition
-                    });
-
-                    overlays.push(overlay);  // 오버레이를 배열에 추가
-
-                    kakao.maps.event.addListener(marker, 'click', function () {
-                        overlay.setMap(map);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching data from backend:', error);
+        $.get("../../img/chicken.json", function (data) {
+            var markers = $(data.positions).map(function (i, position) {
+                return new kakao.maps.Marker({
+                    position: new kakao.maps.LatLng(position.lat, position.lng)
+                });
             });
+            clusterer.addMarkers(markers);
+        });
+
+        kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
+            var level = map.getLevel() - 1;
+            map.setLevel(level, { anchor: cluster.getCenter() });
+        });
+
+        var positions = [
+            {
+                title: '분당',
+                latlng: new kakao.maps.LatLng(37.37470492434092, 127.10686101131469)
+            },
+            {
+                title: '성남',
+                latlng: new kakao.maps.LatLng(37.357486075952124, 127.10712442702211)
+            }
+        ];
+
+        var imageSrc = "../../img/sheltermarker.png";
+
+        for (var i = 0; i < positions.length; i++) {
+            var imageSize = new kakao.maps.Size(35, 35);
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: positions[i].latlng,
+                title: positions[i].title,
+                image: markerImage
+            });
+        }
+
+        var content = '<div class="wrap">' +
+            '    <div class="info">' +
+            '        <div class="title">' +
+            '            분당파크뷰 대피소' +
+            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+            '        </div>' +
+            '        <div class="body">' +
+            '            <div class="img">' +
+            '                <img src="../../img/shelter.png" width="73" height="70">' +
+            '           </div>' +
+            '            <div class="desc">' +
+            '                <div class="ellipsis">성남시 분당구 정자일로 248</div>' +
+            '                <div class="jibun ellipsis">(우) 13554 (지번)정자동 6 </div>' +
+            '                <div><a href="https://place.map.kakao.com/12314865" target="_blank" class="link">가시는 방법</a></div>' +
+            '            </div>' +
+            '        </div>' +
+            '    </div>' +
+            '</div>';
+
+        var overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            map: map,
+            position: new kakao.maps.LatLng(37.37470492434092, 127.10686101131469),
+            zIndex: 10
+        });
+
+        kakao.maps.event.addListener(marker, 'click', function () {
+            overlay.setMap(map);
+        });
 
         function closeOverlay() {
-            overlays.forEach(o => o.setMap(null));  // 모든 오버레이를 지도에서 제거
+            overlay.setMap(null);
         }
     </script>
--->
 </body>
 
 </html>
