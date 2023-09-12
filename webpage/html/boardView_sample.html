@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 보기</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
+    <script src="../js/checkLogin.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        
+        h2{
+            margin-bottom: 7px;
+        }
+        .mainContainer {
+            padding: 30px;
+            margin-bottom: 70px;
+        }
+
+        #boardContainer {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .viewContents {
+            width: 100%;
+            height: auto;
+            padding: 15px 10px;
+            line-height: 2em;
+        }
+        .viewContents>img{
+            margin: 5px;
+        }
+
+        .viewInfo {
+            display: flex;
+            box-sizing: border-box;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+            padding: 10px;
+            border-bottom: 1px solid var(--pointYellow);
+        }
+
+        .left_space {
+            text-align: start;
+        }
+
+        .right_space {
+            text-align: end;
+        }
+
+        .viewBtns {
+            text-align: end;
+            width: 100%;
+            padding: 5px;
+            border-bottom: 3px solid var(--mainDark);
+        }
+
+        td:last-of-type {
+            text-align: center;
+        }
+
+        #replyWrap{
+            padding: 7px;
+            border-bottom: 3px solid var(--mainDark);
+        }
+        .replyEdit{
+            margin-top: 10px;
+        }
+        
+        .boardListSmall {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .boardListSmall th,
+        .boardListSmall td {
+            border-bottom: 1px solid var(--pointBlue);
+            padding: 4px;
+            margin: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <div id="user-profile">
+                    <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+                    <span id="userName">데이터 로딩 중...</span>
+                    <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
+                    <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
+                    <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
+                </div>
+            </li>
+            <li>
+                <a href="boardList.html">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">폭염</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이페이지</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar"></div>
+    <div id="boardContainer">
+        <div class="mainContainer">
+            <div id="viewWrap">
+                <div class="viewLocal">
+                    <h2>긴급상황 게시판 - 폭염</h2>
+                </div>
+                <div class="viewTitle">
+                    <h4>[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ</h4>
+                </div>
+                <div class="viewInfo">
+                    <div class="left_space">
+                        <span>작성자 홍길동</span>
+                        <span>
+                            <button style="margin-left: 10px;">수정</button>
+                            <button>삭제</button>
+                        </span>
+                    </div>
+                    <div class="right_space">
+                        <span>2023-09-09 10:20:05</span>
+                        <span>조회수 24</span>
+                        <span>댓글 6</span>
+                        <span>추천 1</span>
+                    </div>
+                </div>
+                <div class="viewContents">
+                    아니 진짜 처서 지났다는데 언제 시원해지나요 ㅠㅠㅠㅠㅠ
+                    <br />
+                    아직도 에어컨 못 끔 ㅠㅠㅠㅠㅠㅠㅠㅠ
+                    <br/>
+                    <div class="viewBtns">
+                        <a href="javascript:alert('추천되었습니다.')" style="margin: 2px;"><img src="../../img/recommend.png" alt="추천" width="26px"></a>
+                        <a href="javascript:var url = window.document.location.href;alert(url); "><img src="../../img/share.png" alt="공유" width="26px"></a>
+                        <a href="javascript:confirm('정말 신고하시겠습니까?.')"><img src="../../img/siren2.png" alt="신고" width="27px"></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="replyWrap">
+                <table class="replylist">
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col>
+                        <col style="width: 15%;">
+                        <col style="width:3%;">
+                    </colgroup>
+                    <thead>
+                        <tr height="40px">
+                            <th scope="col">작성자</th>
+                            <th scope="col">내용</th>
+                            <th scope="col">작성일</th>
+                            <th scope="col">삭제</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>김길동</td>
+                        <td>아 자체휴강하고 휴가 가고 싶음</td>
+                        <td>2023-09-09 10:20:05</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>홍길동</td>
+                        <td>그러니까요ㅠ</td>
+                        <td>2023-09-09 10:20:55</td>
+                        <td><a href="javascript:confirm('정말 삭제하시겠습니까?')" style="color:var(--mainDark)">X</a></td>
+                    </tr>
+                    <tr>
+                        <td>이순신</td>
+                        <td>온도도 온도인데 습도가 ㅠ</td>
+                        <td>2023-09-09 10:22:05</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>홍길동</td>
+                        <td>저희 동네도 그래요 ㅠㅠㅠ</td>
+                        <td>2023-09-09 10:23:45</td>
+                        <td><a href="javascript:confirm('정말 삭제하시겠습니까?')" style="color:var(--mainDark)">X</a></td>
+                    </tr>
+                    <tr>
+                        
+                        <td>멍멍멍</td>
+                        <td>에어컨 없이 못 살겠음</td>
+                        <td>2023-09-09 10:24:26</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>홍길동</td>
+                        <td>아직 에어컨 못 끄는 중 ㅎ</td>
+                        <td>2023-09-09 10:24:47</td>
+                        <td><a href="javascript:confirm('정말 삭제하시겠습니까?')" style="color:var(--mainDark)">X</a></td>
+                    </tr>
+                    <tr height="20px"></tr>
+                    <tr>
+                        <td>홍길동</td>
+                        <td><textarea name="" id="" cols="50" rows="3"></textarea></td>
+                        <td><input type="button" class="dark" value="등록"></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="boardListWrap">
+                <h5>재난정보게시판 이전 글 다음글</h5>
+
+                <table class="boardListSmall">
+                    <colgroup>
+                        <col style="width:50%">
+                        <col style="width:10%">
+                        <col style="width:10%">
+                        <col style="width:5%">
+                        <col style="width:5%">
+                    </colgroup>
+
+                    <tbody>
+                        <tr>
+                            <td><a href="boardView.html"><span>[충청] </span>여긴 시원한데
+                                    <span class="rplCount">[3]</span></a></td>
+                            <td>폭염</td>
+                            <td>23-09-11</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td><a href="boardView.html"><span>[제주] </span>비 오는 거 보여드림
+                                <span class="rplCount">[0]</span></a></td>
+                            <td>기타</td>
+                            <td>23-09-11</td>
+                            <td>17</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td><a href="boardView.html"><span>[서울] </span>에어컨, 나의 사랑. 에어컨, 나의 빛. 에어컨, 나의 어둠. 에어컨, 나의 삶.
+                                <span class="rplCount">[0]</span></a></td>
+                            <td>기타</td>
+                            <td>23-09-11</td>
+                            <td>24</td>
+                            <td>3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+<div class="footer-content">
+© 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+    <br/>
+    아이콘 저작권
+ <a href="https://www.flaticon.com/kr/free-icons/-" title="비상 사태 아이콘">비상 사태 아이콘  제작자: Freepik - Flaticon</a>
+</div>
+<button id="backToTop" onclick="scrollToTop()">Top</button>
+</footer>
+<!--
+    
+-->
+</html>
