@@ -132,7 +132,7 @@
                     <br>
                     <div class="form-group">
                         <label>회원 탈퇴:</label>
-                        <button id="deleteAccount">회원탈퇴</button>
+                        <button id="deleteAccount" onclick="navigateToWithdrawal()">회원탈퇴</button>
                     </div>
                     <br>
                     <div class="form-group">
@@ -161,6 +161,9 @@
     </footer>
 
     <script>
+        function navigateToWithdrawal() {
+            window.location.href = "withdrawal.html";
+        }
         $(document).ready(function () {
             // 버튼을 비활성화 시키는 함수
             function disableButton() {
