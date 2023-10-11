@@ -18,7 +18,17 @@ public class OuterObject {
 }
 
 class DisasterMessage {
-    String MSG_CN; 
+    String MSG_CN;
+    String DSSTR_SE_NM;
+    String CREAT_DT;
+    String RCV_AREA_NM;
+    int MD101_SN;
+    String DSSTR_SE_ID;
+    String RCV_AREA_ID;
+    String EMRGNCY_STEP_ID;
+    String EMRGNCY_STEP_NM;
+
+
 
     public String getMessageContent() {
         return MSG_CN;
