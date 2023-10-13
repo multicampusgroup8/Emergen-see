@@ -23,10 +23,28 @@ public class UserController {
 	private UserServiceImpl userServiceImpl;
 
 	@GetMapping("/register")
-	public String register() {
+	public String registerPage() {
 		
 		return "users/register";
 	}
+	@RequestMapping(value="/valid", method=RequestMethod.POST)
+	public String registerValid(UserVO vo) throws Exception{
+		System.out.println(vo.toString());
+		//아이디 중복 검사
+
+		//비밀번호 확인을 잘 썼는지 확인하기
+		
+		//둘다 되면 sql문 실행해서 db에 가입 정보 insert 하기
+		userServiceImpl.registerSubmit(vo);
+		//가입 완료되었습니다 라는 메세지창 표시하기
+		
+		System.out.println("가입완료되었습니다.");
+
+		//홈으로 돌려 보내기
+		return "redirect:/";
+	}
+
+	
 	@GetMapping("/findID")
 	public String findID() {
 		
