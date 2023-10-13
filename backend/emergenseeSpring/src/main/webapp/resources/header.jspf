@@ -41,10 +41,13 @@
                 <a href="boardList.html">긴급상황게시판</a>
                 <!-- 하위 메뉴 -->
                 <ul>
-                    <li><a href="#">전체보기</a></li>
-                    <li><a href="#">지진</a></li>
-                    <li><a href="#">호우</a></li>
-                    <li><a href="#">폭염</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath }/board/list">전체보기</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath }/board/listEarthquake">지진</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath }/board/listRain">호우</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath }/board/listHeat">폭염</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath }/board/listTyphoon">폭염</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath }/board/listWind">강풍</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath }/board/listDesease">전염병</a></li>
                 </ul>
             </li>
             <li>
