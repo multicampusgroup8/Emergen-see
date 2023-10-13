@@ -7,7 +7,7 @@
 	<select id="loginCheck" parameterType="UserVO" resultType="Int">
 		select count(*) from user where userid = #{userid} and userpwd = #{userpwd}
 	</select>
-	<insert id="userRegisteration" parameterType="UserVO">
+	<insert id="registerSubmit" parameterType="UserVO">
 		  insert into user (userid, userpwd, username, email, addr, phone, kakaonotification, interests) 
 		  value(#{userid}, #{userpwd}, #{username}, #{email}, #{addr},#{phone},#{kakaonotification},#{interests})
 	</insert>
