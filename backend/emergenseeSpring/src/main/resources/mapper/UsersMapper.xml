@@ -9,7 +9,7 @@
 	</select>
 	<insert id="registerSubmit" parameterType="UserVO">
 		  insert into user (userid, userpwd, username, email, addr, phone, kakaonotification, interests) 
-		  value(#{userid}, #{userpwd}, #{username}, #{email}, #{addr},#{phone},#{kakaonotification},#{interests})
+		  value(#{userid}, #{userpwd}, #{username}, #{email}, #{address},#{phone},#{kakaonotification},#{interests})
 	</insert>
 	
 </mapper>
