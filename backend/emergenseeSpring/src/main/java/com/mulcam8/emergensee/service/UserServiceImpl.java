@@ -17,5 +17,8 @@ public class UserServiceImpl implements UserService{
 	public int loginCheck(UserVO vo) throws Exception {
 		return userDao.loginCheck(vo);
 	}
-
+	@Override
+	public void registerSubmit(UserVO vo) throws Exception {
+		userDao.registerSubmit(vo);
+	}
 }

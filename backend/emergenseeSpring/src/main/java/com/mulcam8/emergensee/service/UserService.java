@@ -7,4 +7,5 @@ import com.mulcam8.emergensee.vo.*;
 @Service
 public interface UserService {
 	public int loginCheck(UserVO vo) throws Exception;
+	public void registerSubmit(UserVO vo) throws Exception;
 }

@@ -11,9 +11,12 @@ import com.mulcam8.emergensee.vo.UserVO;
 @Repository
 public class UserDAO {
 	@Autowired
-	private SqlSessionTemplate sqlSession;
+	private SqlSessionTemplate mybatis;
 	
 	public int loginCheck(UserVO vo) throws Exception {
-		return sqlSession.selectOne("User.loginCheck", vo);
+		return mybatis.selectOne("User.loginCheck", vo);
+	}
+	public void registerSubmit(UserVO vo) throws Exception {
+		mybatis.insert("User.registerSubmit", vo);
 	}
 }
