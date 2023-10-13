@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,10 +27,11 @@ public class Main {
             try {
                 String jsonResponse = fetchDisasterData();
                 //System.out.println(jsonResponse);
-                OuterObject outerObject = parseJsonResponse(jsonResponse);
+                JsonResponse response = parseJsonResponse(jsonResponse);
+                Collections.sort(response.disasterSmsList);
                 //displayMessages(outerObject.disasterSmsList);
                 // 메시지를 데이터베이스에 저장
-                for (var disasterSms : outerObject.disasterSmsList) {
+                for (var disasterSms : response.disasterSmsList) {
                     if (disasterSms.MD101_SN > recentNum) {//todo: 메시지 없는 메시지 일 경우
                         var result = dSQL.insertDB(new DisasterVO(disasterSms));
                         if (result) {
@@ -42,7 +44,7 @@ public class Main {
                 throw new RuntimeException(e);
             }
             try {
-                Thread.sleep(6000);
+                Thread.sleep(60000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -100,10 +102,13 @@ public class Main {
         return sb.toString();
     }
 
-    private static OuterObject parseJsonResponse(String jsonResponse) {
+    private static JsonResponse parseJsonResponse(String jsonResponse) {
         Gson gson = new Gson();
-        return gson.fromJson(jsonResponse, OuterObject.class);
+        return gson.fromJson(jsonResponse, JsonResponse.class);
     }
+
+
+
 
     private static void displayMessages(List<DisasterMessage> disasterMessages) {
         System.out.println(disasterMessages.size());
@@ -116,33 +121,5 @@ public class Main {
             System.out.println(element.RCV_AREA_NM);
         }
     }
-
-    private static void saveToDatabase(List<DisasterMessage> disasterMessages) {
-        // 데이터베이스 연결
-        // 사용자 이름 및 비밀번호를 설정
-        String dbUrl = "jdbc:mysql://localhost:3306/mydatabase";
-        String username = "root";
-        String password = "tiger1234";
-
-        try (Connection connection = DriverManager.getConnection(dbUrl, username, password)) {
-            for (DisasterMessage message : disasterMessages) {
-                String query = "INSERT INTO disaster(no, message, date, step, type, region) VALUES(?, ?, ?, ?, ?, ?)";
-                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
-                    preparedStatement.setInt(1, message.MD101_SN);
-                    preparedStatement.setString(2, message.MSG_CN);
-                    preparedStatement.setString(3, message.CREAT_DT);
-                    preparedStatement.setString(4, message.EMRGNCY_STEP_NM);
-                    preparedStatement.setString(5, message.DSSTR_SE_NM);//종류
-                    preparedStatement.setString(6, message.RCV_AREA_NM);
-                    preparedStatement.executeUpdate();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            // 예외 처리 추가
-        }
-    }
-
 }
 

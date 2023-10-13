@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OuterObject {
+public class JsonResponse {
     List<DisasterMessage> disasterSmsList = new ArrayList<>();
     private Object rtnResult;
 
@@ -17,7 +17,7 @@ public class OuterObject {
     }
 }
 
-class DisasterMessage {
+class DisasterMessage implements Comparable<DisasterMessage> {
     String MSG_CN;
     String DSSTR_SE_NM;
     String CREAT_DT;
@@ -36,5 +36,15 @@ class DisasterMessage {
 
     public void setMessageContent(String MSG_CN) {
         this.MSG_CN = MSG_CN;
+    }
+
+    @Override
+    public int compareTo(DisasterMessage o) {
+        if(MD101_SN > o.MD101_SN){
+            return 1;
+        }else if( MD101_SN < o.MD101_SN){
+            return -1;
+        }
+        return 0;
     }
 }
