@@ -2,15 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
-    <script src="../js/topButtonScript.js" defer></script>
-    <script src="../js/notification.js" defer></script>
-    <script src="../js/getUserInfo.js" defer></script>
     <style>
        .register-container {
             width: 40%;
@@ -82,29 +73,26 @@
             padding: 10px;
         }
     </style>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-</head>
 <body>
 <div class="container">
         <div class="register-container">
             <h1>회원 가입</h1>
-            <form onsubmit="return validateForm()" action="register" method="post" novalidate>
+            <form onsubmit="return validateForm()" action="/emergensee/valid" method="post" novalidate>
                 <label for="username">아이디:</label>
-                <input type="text" name="username" id="username" required pattern="[a-zA-Z0-9]{3,20}"><br>
+                <input type="text" name="userid" id="userid" required pattern="[a-zA-Z0-9]{3,20}"><br>
                 <label for="password">비밀번호:</label>
-                <input type="password" name="password" id="password" required pattern=".{6,20}"><br>
+                <input type="password" name="userpwd" id="password" required pattern=".{6,20}"><br>
                 <label for="confirm_password">비밀번호 확인:</label>
-                <input type="password" name="confirm_password" id="confirm_password" required><br>
-                <label for="name">이름:</label>
-                <input type="text" name="name" id="name" required pattern=".{2,40}"><br>
+                <input type="password" name="confirmpassword" id="confirm_password" required><br>
+                <label for="username">이름:</label>
+                <input type="text" name="username" id="username" required pattern=".{2,40}"><br>
                 <label for="email">이메일 주소:</label>
                 <input type="email" name="email" id="email" required
                     pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"><br>
                 <label for="address">주소:</label>
                 <input type="text" name="address" id="address" required><br>
                 <label for="address_detail">상세 주소:</label>
-                <input type="text" name="address_detail" id="address_detail" required><br>
+                <input type="text" name="addressdetail" id="address_detail" required><br>
                 <label for="phone">휴대폰 번호:</label>
                 <input type="tel" name="phone" id="phone" required pattern="[0-9]{10,11}"><br>
                 <div style="display: flex; margin-bottom: 10px;"> <br> 이용약관: </div>
@@ -221,4 +209,3 @@
         }
     </script>
 </body>
-</html>

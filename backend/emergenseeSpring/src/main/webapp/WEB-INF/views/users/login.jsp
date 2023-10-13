@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script src="../js/topButtonScript.js" defer></script>
-<script src="../js/notification.js" defer></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<title>Login</title>
+
     <style>
         .login-container {
             width: 40%;
@@ -53,14 +46,13 @@
             width: 100%;
         }
     </style>
-    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 <main>
         <div class="container">
             <div class="login-container">
                 <h2>Login</h2>
-                <form action="/web/login" method="post">
+                <form action="/emergensee/login" method="post">
                     <div class="input-group">
                         <label for="userid">아이디:</label>
                         <input type="text" id="userid" name="userid" required oninput="checkInput()">
@@ -97,4 +89,3 @@
         window.onload = checkInput;
     </script>
 </body>
-</html>
