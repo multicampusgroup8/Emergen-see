@@ -1,4 +1,4 @@
-package com.multicampus.web.controller;
+package com.mulcam8.emergensee.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.multicampus.web.service.UserServiceImpl;
-import com.multicampus.web.vo.UserVO;
+import com.mulcam8.emergensee.service.UserServiceImpl;
+import com.mulcam8.emergensee.vo.UserVO;
+
+
 
 @Controller
 public class UserController {

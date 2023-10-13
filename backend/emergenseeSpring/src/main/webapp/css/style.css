@@ -1,0 +1,361 @@
+@font-face {
+    font-family: 'NanumSquaer'; /* 원하는 폰트 이름으로 설정 */
+    src: url('../../img/NanumSquareR.ttf') format('truetype'); /* 폰트 파일의 위치 */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*컬러*/
+:root {
+    --mainLight: #e8e5e2;
+    --mainLlighter: #f7f5f4;
+    --mainDark: #222224;
+    --pointYellow: #fbc328;
+    --pointBlue: #1b6cef;
+}
+
+header {
+    min-width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--pointYellow);
+}
+
+header > *:first-child, 
+header > *:last-child {
+    text-align: center;
+}
+
+header #logo {
+    width: 250px;
+    height: auto;
+}
+
+#user-profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#user-profile #loginButton,
+#user-profile #registerButton,
+#user-profile #logoutButton {
+    margin-left: 10px;
+    color:var(--mainDark);
+    text-decoration: none;
+}
+
+.main-nav {
+    min-width: 1000px;
+    background-color: var(--pointYellow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+}
+
+.main-nav li {
+    position: relative;
+}
+
+.main-nav li>ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--mainLight);
+    border: 1px solid var(--mainLlighter);
+    z-index: 10;
+}
+
+.main-nav li:hover>ul {
+    display: block;
+}
+
+.main-nav ul li a {
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.main-nav ul li a:hover {
+    background-color: var(--mainLlighter);;
+    text-decoration: none;
+}
+
+.notification-bar {
+    min-width: 1000px;
+    background-color: var(--mainDark);
+    color: var(--mainLlighter);
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    box-shadow: 0 2px 5px var(--mainLight);
+}
+
+.side-nav {
+    width: 200px;
+    background-color: var(--mainLlighter);
+    padding: 20px;
+    margin-top: 5px;
+    border-right: 5px solid var(--mainLight);
+}
+
+.side-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-nav ul li {
+    margin-bottom: 10px;
+}
+
+.side-nav ul li a {
+    text-decoration: none;
+    color: var(--mainDark);
+    transition: color 0.3s;
+}
+
+.side-nav ul li a:hover {
+    color: var(--pointYellow);
+}
+
+.side-nav ul li ul {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.side-nav ul li a.emphasize {
+    color: var(--mainDark);
+    font-weight: bolder;
+}
+
+.PageTitle {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--mainDark);
+    border-bottom: 2px solid var(--mainDark);
+    margin-bottom: 10px;
+    display: block;
+    padding-bottom: 5px;
+}
+
+main {
+    flex-grow: 1;
+    background-color:var(--mainLlighter);
+    padding-left: 30px;
+    padding-bottom: 50px
+}
+
+div.form-container {
+    width: 90%;
+    padding: 20px;
+    border: 1px solid var(--mainLight);
+    background-color: var(--mainLlighter);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px var(--mainLight);
+}
+
+body {
+    font-family: 'NanumSquare', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--mainLlighter);
+}
+
+.container {
+    display: flex;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 50px;
+    justify-content: center;
+}
+
+.main-container {
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'NanumSquare', sans-serif;
+    color: var(--mainDark);
+    border-bottom: 2px solid var(--pointYellow);
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 16px;
+}
+h4{
+    padding:5px;
+    margin-bottom: 0;
+    margin-top: 7px;
+}
+a{
+    text-decoration: none;
+    color: var(--mainDark);
+}
+a:hover{
+    text-decoration: underline;
+}
+
+/*댓글span 컬러*/
+span.rplCount{
+    color: var(--pointBlue);
+}
+
+/*기본(밝은) 버튼*/
+button,
+.btn {
+    border: 3px solid var(--mainDark);
+    /*테두리 두께 & 색*/
+    background: var(--mainLlighter);
+    /*배경색*/
+    color: var(--mainDark);
+    /*글자색*/
+    padding: 1px 14px;
+    /*내부여백*/
+    font-weight: bold;
+    /*글씨 굵게*/
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+    /*커서 닿을 때 배경및 글자색 전환*/
+}
+
+/* 기본 버튼의 호버(커서 닿거나 할 때) 효과 */
+button:hover,
+.btn:hover {
+    background: var(--mainDark);
+    color: var(--mainLight);
+}
+
+button:disabled {
+    background-color:var(--mainLight);
+    cursor: not-allowed;
+}
+
+
+/* 어두운 버튼&input */
+button.dark,
+input.dark {
+    border: 3px solid var(--mainDark);
+    background: var(--mainDark);
+    color: var(--mainLight);
+    padding: 1px 14px;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* 어두운 버튼&input 호버 효과 */
+button.dark:hover,
+input.dark:hover {
+    cursor: pointer;
+    background: var(--pointYellow);
+    color: var(--mainDark);
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    margin-right: 10px;
+}
+
+table {
+    width: 100%;
+    /* 표의 너비 설정 */
+    margin: 20px auto;
+    /* 위 아래 여백 20px, 좌우로 중앙 정렬 */
+    border-collapse: collapse;
+    /* 표 셀의 경계선 합치기 */
+}
+
+th,
+td {
+    border: 1px solid #222224;
+    /* 셀 경계선 설정 */
+    padding: 10px 15px;
+    /* 셀 내부 패딩 설정 */
+    text-align: center;
+    /* 텍스트 중앙 정렬 */
+    width: auto;  /* 셀의 너비를 고정값으로 설정 */
+    max-width: 150px; /* 셀의 최대 너비를 고정값으로 설정 */
+}
+
+th {
+    background-color: #fbc328;
+    /* 헤더 배경색 설정 */
+}
+td {
+    background-color: #fff;
+    /* 헤더 배경색 설정 */
+}
+
+td a {
+    color: #222224;
+}
+
+td a:hover {
+    color: #fbc238;
+}
+
+label {
+    white-space: nowrap;
+    display: block;
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: var(--mainDark);
+    color: var(--mainLlighter);
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-content {
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin: 0;
+}

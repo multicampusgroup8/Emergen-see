@@ -1,8 +1,8 @@
-package com.multicampus.web.service;
+package com.mulcam8.emergensee.service;
 
 import org.springframework.stereotype.Service;
 
-import com.multicampus.web.vo.UserVO;
+import com.mulcam8.emergensee.vo.*;
 
 @Service
 public interface UserService {

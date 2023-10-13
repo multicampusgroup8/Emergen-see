@@ -1,4 +1,4 @@
-package com.multicampus.web.vo;
+package com.mulcam8.emergensee.vo;
 
 public class UserVO {
 	private String userid;

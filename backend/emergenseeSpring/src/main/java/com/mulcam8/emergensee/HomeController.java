@@ -1,4 +1,4 @@
-package com.multicampus.web.controller;
+package com.mulcam8.emergensee;
 
 import java.text.DateFormat;
 import java.util.Date;

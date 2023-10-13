@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+    <script src="/emergensee/js/topButtonScript.js" defer></script>
+    <script src="/emergensee/js/notification.js" defer></script>
+    <script src="/emergensee/js/checkLogin.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c&libraries=clusterer"></script>
+           <link rel="stylesheet" href="/emergensee/css/style.css">
+           
+           </head>
+
+<body>
+    <!-- 페이지 헤더: 로고 및 메인 네비게이션 포함 -->
+    <header>
+        <div></div>
+        <a href="mainPage.html"><img id="logo" src="/emergensee/img/logo.png" alt="EMERGENSEE Logo"></a>
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <div id="user-profile">
+                    <img id="profileImg" src="/emergensee/img/profile.png" alt="User Profile Image">
+                    <span id="userName">데이터 로딩 중...</span>
+                    <a href="login.html" id="loginButton" style="display:  inline-block;">로그인</a>
+                    <a href="register.html" id="registerButton" style="display: inline-block;">회원가입</a>
+                    <a href="logout.html" id="logoutButton" style="display: none;">로그아웃</a>
+                </div>
+            </li>
+            <li>
+                <a href="boardList.html">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">폭염</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="login.html">마이 페이지</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- 알림바 -->
+    <div class="notification-bar" id="notificationBar">
+    </div>
