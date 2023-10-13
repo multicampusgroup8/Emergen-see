@@ -1,0 +1,41 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>메인 페이지</title>
+    <style>
+        #header, #footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        #map {
+            height: 300px;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="header">
+        <h1>환영합니다!</h1>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="footer">
+        <p>감사합니다.</p>
+    </div>
+
+    <script>
+        var map = L.map('map').setView([37.5665, 126.9780], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.marker([37.5665, 126.9780]).addTo(map)
+            .bindPopup('서울시청')
+            .openPopup();
+    </script>
+</body>
+</html>
