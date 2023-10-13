@@ -10,19 +10,23 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://127.0.0.1/mydb"></property>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/mydb"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="tiger1234"></property>
 	</bean>
 	<!--mybatis에서 사용할 xm] 파일의 위치를 이용하여 sqlsession Factory 객체를생성 = datasource 객체를 DI-->
-	<bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" ></property>
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
-		<property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"></property>
+		<property name="mapperLocations" value="classpath:/mapper/*UsersMapper.xml"></property>
+	</bean>
+	bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	<!--  추상 클래스가 있는 곳(dao)-->
 	<!-- beans에 mybatis-spring추가해야함 -->
 	<mybatis-spring:scan base-package="com.mulcam8.emergensee.mapper"/>
+	<!-- "com.mulcam8.emergensee.dao"-->
 	
 	<!--트랜잭션 처리를 하는 마이바티스 객체 생성 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
