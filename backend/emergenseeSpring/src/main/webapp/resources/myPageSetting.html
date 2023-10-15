@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/topButtonScript.js" defer></script>
+    <script src="../js/notification.js" defer></script>
+    <script src="../js/getUserInfo.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>마이페이지_비밀번호확인</title>
+    <style>
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group label {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .form-group input {
+            flex: 2;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #E8E5E2;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div></div>
+        <img id="logo" src="../../img/logo.png" alt="EMERGENSEE Logo">
+        <div id="user-profile">
+            <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+            <span id="userName">데이터 로딩 중...</span>
+            <a href="logout.html" id="logoutButton">로그아웃</a>
+        </div>
+    </header>
+    <!-- 메인 네비게이션 섹션 -->
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <div id="user-profile">
+                    <img id="profileImg" src="../../img/profile.png" alt="User Profile Image">
+                    <span id="userName">데이터 로딩 중...</span>
+                    <a href="logout.html" id="logoutButton">로그아웃</a>
+                </div>
+            </li>
+            <li>
+                <a href="boardList.html">긴급상황게시판</a>
+                <!-- 하위 메뉴 -->
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">지진</a></li>
+                    <li><a href="#">호우</a></li>
+                    <li><a href="#">폭염</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="myPage.html">마이 페이지</a>
+                <ul>
+                    <li><a href="myPageMap_shelter.html">대피소 표시</a></li>
+                    <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+                    <li><a href="myPageSetting.html">설정</a></li>
+                    <li><a href="myPagePost.html">내 게시글 목록</a></li>
+                    <li><a href="myPageComment.html">내 댓글 목록</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="notification-bar" id="notificationBar">
+    </div>
+    <!-- 사이드 메뉴 & 메인 컨텐츠 -->
+    <div class="container">
+        <div class="main-container">
+            <!-- 사이드 메뉴 -->
+            <nav class="side-nav">
+                <span class="PageTitle">마이 페이지</span>
+                <ul>
+                    <li><a href="myPageMap_shelter.html">대피소 표시</a></li>
+                    <li><a href="myPageMap_personal.html">개인 관심 지도</a></li>
+                    <li>
+                        <a href="myPageSetting.html" class="emphasize">설정</a>
+                        <ul>
+                            <li><a href="#" class="emphasize">내정보 수정</a></li>
+                            <li><a href="#" class="emphasize">회원탈퇴</a></li>
+                            <li><a href="#" class="emphasize">관심지역설정</a></li>
+                            <li><a href="#" class="emphasize">카카오톡 알림설정</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="myPagePost.html">내 게시글 목록</a></li>
+                    <li><a href="myPageComment.html">내 댓글 목록</a></li>
+                </ul>
+            </nav>
+            <!-- 메인 컨텐츠 -->
+            <main>
+                <h1>설정</h1>
+                <div class="form-container">
+                    <div class="form-group">
+                        <p>비밀번호를 재확인 합니다.</p>
+                        <input type="password" id="passwordConfirm" placeholder="비밀번호를 입력해주세요">
+                        <br>
+                        <button>확인</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            © 2023 모든 권리 보유. 멀티캠퍼스 세미프로젝트 8조에 있습니다.
+        </div>
+        <button id="backToTop" onclick="scrollToTop()">Top</button>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            // 버튼을 클릭했을 때의 이벤트 핸들러
+            $("button").click(function () {
+                // 입력한 비밀번호를 가져옴
+                const password = $("#passwordConfirm").val();
+
+                // 백엔드로 전송
+                $.ajax({
+                    type: "POST",
+                    url: "/backend-endpoint",
+                    data: { password: password },  // 전송할 데이터
+                    dataType: "json",  // 서버로부터 받을 데이터의 타입을 지정
+                    success: function (response) {
+                        if (response.success) {
+                            // 결과가 true일 경우, myPageChange.html로 리디렉션
+                            window.location.href = "myPageChange.html";
+                        } else {
+                            // 결과가 false일 경우
+                            alert("비밀번호 확인에 실패했습니다. 다시 시도해주세요.");
+                        }
+                    },
+                    error: function () {
+                        // 서버 에러 발생시
+                        alert("서버 오류가 발생했습니다. 나중에 다시 시도해주세요.");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
