@@ -1,12 +1,17 @@
 package com.mulcam8.emergensee.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.mysql.cj.Session;
 
 @Controller
 public class MyPageController {
 	@GetMapping("/mypage/change")
-	public String mypageChangePage() {
+	public String mypageChangePage(HttpSession session) {
+		
 		return "mypage/myPageChange";
 	}
 	
@@ -21,8 +26,16 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/mypage/shelter")
-	public String mypageShelterPage() {
-		return "mypage/myPageMap_shelter";
+	public String mypageShelterPage(HttpSession session) {
+		String logStatus = (String)session.getAttribute("logStatus");
+		System.out.println(logStatus);
+		String path = "";
+		if(logStatus != null && logStatus.equals("Y")) {
+			path = "mypage/myPageMap_shelter";
+		}else{
+			path = "users/login";
+		}
+		return path;
 	}
 	
 	@GetMapping("/mypage/post")
