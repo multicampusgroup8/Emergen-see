@@ -36,7 +36,7 @@ public class DisasterSQL extends DBConnection{
         System.out.println("success");
         try {
             //3. 쿼리문 -> preparedstatement 생성
-            String sql = "insert into disaster(no, message, date, step, type, region) values(?, ?, ?, ?, ?, ?)";
+            String sql = "insert into disaster(disaster_no, fullcontents, issueddate, disaster_level, disaster_type, disaster_region) values(?, ?, ?, ?, ?, ?)";
             pstmt  = con.prepareStatement(sql);
             //? 가 있는 쿼리문은 값을 세팅해야 한다.
 
