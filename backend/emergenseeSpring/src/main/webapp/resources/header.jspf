@@ -25,7 +25,7 @@
     <!-- 페이지 헤더: 로고 및 메인 네비게이션 포함 -->
     <header>
         <div></div>
-        <a href="mainPage.html"><img id="logo" src="/emergensee/img/logo.png" alt="EMERGENSEE Logo"></a>
+        <a href="/emergensee/"><img id="logo" src="/emergensee/img/logo.png" alt="EMERGENSEE Logo"></a>
     </header>
     <!-- 메인 네비게이션 섹션 -->
     <nav class="main-nav">
@@ -57,7 +57,7 @@
                 </ul>
             </li>
             <li>
-                <a href="login.html">마이 페이지</a>
+				<a href="/emergensee/mypage/shelter">마이 페이지</a>
             </li>
         </ul>
     </nav>
