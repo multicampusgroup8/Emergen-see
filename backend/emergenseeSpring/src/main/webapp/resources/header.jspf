@@ -25,7 +25,7 @@
     <!-- 페이지 헤더: 로고 및 메인 네비게이션 포함 -->
     <header>
         <div></div>
-        <a href="/emergensee/"><img id="logo" src="/emergensee/img/logo.png" alt="EMERGENSEE Logo"></a>
+        <a href="${pageContext.servletContext.contextPath }/"><img id="logo" src="/emergensee/img/logo.png" alt="EMERGENSEE Logo"></a>
     </header>
     <!-- 메인 네비게이션 섹션 -->
     <nav class="main-nav">
@@ -35,12 +35,12 @@
                     <img id="profileImg" src="/emergensee/img/profile.png" alt="User Profile Image">
                     <span id="userName">${logId}</span>
                     <c:if test="${logStatus == null }">
-                    	<a href="/emergensee/login" id="loginButton" style="display:  inline-block;">로그인</a>
+                    	<a href="${pageContext.servletContext.contextPath }/login" id="loginButton" style="display:  inline-block;">로그인</a>
 					</c:if>
 					<c:if test="${logStatus eq 'Y'}">
-					    <a href="/emergensee/logout" id="logoutButton" style="display:  inline-block;">로그아웃</a>
+					    <a href="${pageContext.servletContext.contextPath }/logout" id="logoutButton" style="display:  inline-block;">로그아웃</a>
 					</c:if>
-                    <a href="/emergensee/register" id="registerButton" style="display: inline-block;">회원가입</a>
+                    <a href="${pageContext.servletContext.contextPath }/register" id="registerButton" style="display: inline-block;">회원가입</a>
                 </div>
             </li>
             <li>
@@ -57,7 +57,7 @@
                 </ul>
             </li>
             <li>
-				<a href="/emergensee/mypage/shelter">마이 페이지</a>
+				<a href="${pageContext.servletContext.contextPath }/mypage/shelter">마이 페이지</a>
             </li>
         </ul>
     </nav>
