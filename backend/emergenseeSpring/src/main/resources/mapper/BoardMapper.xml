@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.emergen.see.mapper.BoardMapper">
+	<insert id="boardInsert">
+		insert into board(subject, contents, userid, user_user_no, disasterType, location) 
+		values(#{subject}, #{contents}, 'hong', 1, #{disasterType}, #{location})
+	</insert>
+	
+	<select id="boardPageList" resultType="com.emergen.see.vo.BoardVO">
+		select post_no, subject, userid, location, date_format(writedate, '%Y-%m-%d %h:%i'), hit, popular
+		from board
+		<if test="searchText!=null">
+			where ${searchKey} like '%${searchText}%'
+		</if>
+		<if test="searchText!=null and disasterType!=null">
+			and disasterType= #{disasterType}
+		</if>
+		<if test="searchText==null and disasterType!=null">
+			where disasterType = #{disasterType}
+		</if>
+		
+		order by post_no desc
+		limit ${onePageRecord} offset ${offsetPoint}	
+	</select>
+	
+	<select id="totalRecord">
+		select count(post_no) from board 
+		
+		<if test="searchText!=null">
+			where ${searchKey} like '%${searchText}%'
+		</if>
+		<if test="searchText!=null and disasterType!=null">
+			and disasterType= #{disasterType}
+		</if>
+		<if test="searchText==null and disasterType!=null">
+			where disasterType = #{disasterType}
+		</if>
+	</select>
+	
+	<select id="boardSelect" resultType="com.emergen.see.vo.BoardVO">
+		select * from board
+		where post_no=${param1}
+	</select>	
+	
+	<update id="hitCount">
+		update board set hit=hit+1 where post_no=${param1}
+	</update>
+	
+	<update id="boardUpdate">
+		update board set subject=#{subject}, content=#{content} where post_no=${post_no}
+	</update>
+	
+	<delete id="boardDelete">
+		delete from board where post_no=${param1}
+	</delete>
+
+	
+	<!-- Type별 페이지 List -->
+	<select id="boardTypeList" resultType="com.emergen.see.vo.BoardVO">
+		select post_no, subject, userid, location, writedate, hit, popular 
+		from board 
+		where disasterType like '%${disasterType}%' 
+		order by post_no desc limit ${onePageRecord} offset ${offsetPoint}	
+	</select>
+
+</mapper>
