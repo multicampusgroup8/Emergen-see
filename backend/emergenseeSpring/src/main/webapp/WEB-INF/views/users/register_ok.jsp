@@ -3,4 +3,5 @@
 
 <script>
 	alert("회원가입되었습니다.");
+	location.href = "${pageContext.servletContext.contextPath }/login";
 </script>
