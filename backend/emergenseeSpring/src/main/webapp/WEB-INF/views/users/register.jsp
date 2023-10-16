@@ -73,11 +73,77 @@
             padding: 10px;
         }
     </style>
-<body>
+ <script>
+        function validateForm() {
+            var username = document.getElementById("userid").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            var name = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var address = document.getElementById("address").value;
+            var addressDetail = document.getElementById("address_detail").value;
+            var phone = document.getElementById("phone").value;
+
+
+            var usernamePattern = /^[a-zA-Z0-9]{3,20}$/;
+            var passwordPattern = /^.{6,20}$/;
+            var namePattern = /^.{2,40}$/;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            var phonePattern = /^[0-9]{10,11}$/;
+            var termsChecked = document.querySelector('input[name="terms"]:checked');
+            var userTypeChecked = document.querySelector('input[name="userType"]:checked');
+
+            if (!usernamePattern.test(username)) {
+                alert("아이디는 3~20자의 영문 + 숫자로 이루어져야 합니다.");
+                return false;
+            }
+
+            if (!passwordPattern.test(password)) {
+                alert("비밀번호는 6~20자여야 합니다.");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+                return false;
+            }
+
+            if (!namePattern.test(name)) {
+                alert("이름은 2~40자 이내여야 합니다.");
+                return false;
+            }
+
+            if (address.trim() === "" || addressDetail.trim() === "") {
+                alert("주소와 상세 주소를 입력해주세요!");
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert("유효하지 않은 이메일 주소입니다.");
+                return false;
+            }
+
+            if (!phonePattern.test(phone)) {
+                alert("유효하지 않은 휴대폰 번호입니다.");
+                return false;
+            }
+            if (!termsChecked) {
+                alert("이용약관에 동의해주세요.");
+                return false;
+            }
+
+            if (!userTypeChecked) {
+                alert("유저 유형을 선택해주세요.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 <div class="container">
         <div class="register-container">
             <h1>회원 가입</h1>
-            <form onsubmit="return validateForm()" action="/emergensee/valid" method="post" novalidate>
+            <form onsubmit="return validateForm()" action="${pageContext.servletContext.contextPath }/registerOk" method="post" novalidate>
                 <label for="username">아이디:</label>
                 <input type="text" name="userid" id="userid" required pattern="[a-zA-Z0-9]{3,20}"><br>
                 <label for="password">비밀번호:</label>
@@ -141,71 +207,5 @@
     </div>
     
     
-     <script>
-        function validateForm() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirm_password").value;
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var address = document.getElementById("address").value;
-            var addressDetail = document.getElementById("address_detail").value;
-            var phone = document.getElementById("phone").value;
-
-
-            var usernamePattern = /^[a-zA-Z0-9]{3,20}$/;
-            var passwordPattern = /^.{6,20}$/;
-            var namePattern = /^.{2,40}$/;
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-            var phonePattern = /^[0-9]{10,11}$/;
-            var termsChecked = document.querySelector('input[name="terms"]:checked');
-            var userTypeChecked = document.querySelector('input[name="userType"]:checked');
-
-            if (!usernamePattern.test(username)) {
-                alert("아이디는 3~20자의 영문 + 숫자로 이루어져야 합니다.");
-                return false;
-            }
-
-            if (!passwordPattern.test(password)) {
-                alert("비밀번호는 6~20자여야 합니다.");
-                return false;
-            }
-
-            if (password !== confirmPassword) {
-                alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-                return false;
-            }
-
-            if (!namePattern.test(name)) {
-                alert("이름은 2~40자 이내여야 합니다.");
-                return false;
-            }
-
-            if (address.trim() === "" || addressDetail.trim() === "") {
-                alert("주소와 상세 주소를 입력해주세요!");
-                return false;
-            }
-
-            if (!emailPattern.test(email)) {
-                alert("유효하지 않은 이메일 주소입니다.");
-                return false;
-            }
-
-            if (!phonePattern.test(phone)) {
-                alert("유효하지 않은 휴대폰 번호입니다.");
-                return false;
-            }
-            if (!termsChecked) {
-                alert("이용약관에 동의해주세요.");
-                return false;
-            }
-
-            if (!userTypeChecked) {
-                alert("유저 유형을 선택해주세요.");
-                return false;
-            }
-
-            return true;
-        }
-    </script>
+    
 </body>
