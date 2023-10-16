@@ -11,5 +11,8 @@
 		  insert into user (userid, userpwd, username, email, addr, phone, kakaonotification, interests) 
 		  value(#{userid}, #{userpwd}, #{username}, #{email}, #{address},#{phone},#{kakaonotification},#{interests})
 	</insert>
+	<select id="idDuplicateCheck" parameterType="String" resultType="Int">
+		select count(*) from user where userid = #{userid}
+	</select>
 	
 </mapper>
