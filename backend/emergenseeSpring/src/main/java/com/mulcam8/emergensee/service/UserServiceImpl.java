@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService{
 	public void registerSubmit(UserVO vo) throws Exception {
 		userDao.registerSubmit(vo);
 	}
+	@Override
+	public int idDuplicateCheck(String userid) throws Exception {
+		return userDao.idDuplicateCheck(userid);
+	}
+	
 }

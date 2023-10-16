@@ -19,4 +19,7 @@ public class UserDAO {
 	public void registerSubmit(UserVO vo) throws Exception {
 		mybatis.insert("User.registerSubmit", vo);
 	}
+	public int idDuplicateCheck(String userid) throws Exception{
+		return mybatis.selectOne("User.idDuplicateCheck", userid);
+	}
 }

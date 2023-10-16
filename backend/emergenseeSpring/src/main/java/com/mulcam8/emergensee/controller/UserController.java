@@ -27,19 +27,27 @@ public class UserController {
 		
 		return "users/register";
 	}
-	@RequestMapping(value="/valid", method=RequestMethod.POST)
+	@RequestMapping(value="/registerOk", method=RequestMethod.POST)
 	public String registerValid(UserVO vo) throws Exception{
 		System.out.println(vo.toString());
-		
-		//sql문 실행해서 db에 가입 정보 insert 하기
-		System.out.println("가입정보를 insert합니다.");
-		userServiceImpl.registerSubmit(vo);
-		//가입 완료되었습니다 라는 메세지창 표시하기
-		
-		System.out.println("가입완료되었습니다.");
+		String path = "";
+		int result = userServiceImpl.idDuplicateCheck(vo.getUserid());
+		if(result == 1) {
+			//아이디가 중복 된다.
+			 return "users/idDuplicateCheck";
+		}else if(result !=1 && vo.getConfirmpassword().equals(vo.getUserpwd())) {
+			System.out.println("가입정보를 insert");
+			userServiceImpl.registerSubmit(vo);
+			System.out.println("가입완료되었습니다.");
 
-		//홈으로 돌려 보내기(url /web/)
-		return "redirect:/";
+			path = "users/register_ok";
+		}else {
+			System.out.println("비밀번호 확인 재입력");
+
+			path = "redirect:/";
+		}
+
+		return path;
 	}
 	@GetMapping("/findID")
 	public String findID() {
