@@ -13,7 +13,8 @@
     <title>메인페이지</title>
     <script src="/emergensee/js/topButtonScript.js" defer></script>
     <script src="/emergensee/js/notification.js" defer></script>
-    <script src="/emergensee/js/checkLogin.js" defer></script>
+    <!-- 
+    <script src="/emergensee/js/checkLogin.js" defer></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c&libraries=clusterer"></script>
@@ -32,12 +33,14 @@
         <ul>
             <li>
                 <div id="user-profile">
-                    <img id="profileImg" src="/emergensee/img/profile.png" alt="User Profile Image">
-                    <span id="userName">${logId}</span>
                     <c:if test="${logStatus == null }">
                     	<a href="${pageContext.servletContext.contextPath }/login" id="loginButton" style="display:  inline-block;">로그인</a>
 					</c:if>
 					<c:if test="${logStatus eq 'Y'}">
+					<img id="profileImg" src="/emergensee/img/profile.png" alt="User Profile Image">
+						<a href="${pageContext.servletContext.contextPath }/mypage/shelter">
+		                    ${logId}
+		                </a>
 					    <a href="${pageContext.servletContext.contextPath }/logout" id="logoutButton" style="display:  inline-block;">로그아웃</a>
 					</c:if>
                     <a href="${pageContext.servletContext.contextPath }/register" id="registerButton" style="display: inline-block;">회원가입</a>
