@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"> </script>
  <style>
         .form-group {
             display: flex;
@@ -141,11 +142,8 @@
             <!-- 메인 컨텐츠 -->
             <main>
                 <h1>대피소 표시</h1>
-                <div class="form-container">
-                    <img id="map" src="../../img/map_sample3.png" style="width:100%;height:auto;"></img>
-                    <!--
+                <div class="form-container">                    
                 <div id="map" style="width:100%;height:350px;"></div>
-                -->
                 
                 <table id="table">
                     <thead>
@@ -171,6 +169,16 @@
         </div>
     </div>
 
+<script>
+        var map = L.map('map').setView([37.5665, 126.9780], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.marker([37.5665, 126.9780]).addTo(map)
+            .bindPopup('서울시청')
+            .openPopup();
+        
+    </script>
     <!--
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c"></script>
