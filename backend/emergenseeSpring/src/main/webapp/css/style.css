@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'NanumSquaer'; /* 원하는 폰트 이름으로 설정 */
-    src: url('../../img/NanumSquareR.ttf') format('truetype'); /* 폰트 파일의 위치 */
+    font-family: 'NanumSquaer'; /* �썝�븯�뒗 �룿�듃 �씠由꾩쑝濡� �꽕�젙 */
+    src: url('../../img/NanumSquareR.ttf') format('truetype'); /* �룿�듃 �뙆�씪�쓽 �쐞移� */
     font-weight: normal;
     font-style: normal;
 }
 
-/*컬러*/
+/*而щ윭*/
 :root {
     --mainLight: #e8e5e2;
     --mainLlighter: #f7f5f4;
@@ -28,6 +28,7 @@ header > *:last-child {
 }
 
 header #logo {
+	margin: 30px 10px 10px 10px;
     width: 250px;
     height: auto;
 }
@@ -66,6 +67,7 @@ header #logo {
     justify-content: space-around;
     width: 100%;
     list-style-type: none;
+    margin: 10px;
     padding: 0;
 }
 
@@ -230,29 +232,29 @@ a:hover{
     text-decoration: underline;
 }
 
-/*댓글span 컬러*/
+/*�뙎湲�span 而щ윭*/
 span.rplCount{
     color: var(--pointBlue);
 }
 
-/*기본(밝은) 버튼*/
+/*湲곕낯(諛앹�) 踰꾪듉*/
 button,
 .btn {
     border: 3px solid var(--mainDark);
-    /*테두리 두께 & 색*/
+    /*�뀒�몢由� �몢猿� & �깋*/
     background: var(--mainLlighter);
-    /*배경색*/
+    /*諛곌꼍�깋*/
     color: var(--mainDark);
-    /*글자색*/
+    /*湲��옄�깋*/
     padding: 1px 14px;
-    /*내부여백*/
+    /*�궡遺��뿬諛�*/
     font-weight: bold;
-    /*글씨 굵게*/
+    /*湲��뵪 援듦쾶*/
     transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
-    /*커서 닿을 때 배경및 글자색 전환*/
+    /*而ㅼ꽌 �떯�쓣 �븣 諛곌꼍諛� 湲��옄�깋 �쟾�솚*/
 }
 
-/* 기본 버튼의 호버(커서 닿거나 할 때) 효과 */
+/* 湲곕낯 踰꾪듉�쓽 �샇踰�(而ㅼ꽌 �떯嫄곕굹 �븷 �븣) �슚怨� */
 button:hover,
 .btn:hover {
     background: var(--mainDark);
@@ -265,7 +267,7 @@ button:disabled {
 }
 
 
-/* 어두운 버튼&input */
+/* �뼱�몢�슫 踰꾪듉&input */
 button.dark,
 input.dark {
     border: 3px solid var(--mainDark);
@@ -275,7 +277,7 @@ input.dark {
     transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-/* 어두운 버튼&input 호버 효과 */
+/* �뼱�몢�슫 踰꾪듉&input �샇踰� �슚怨� */
 button.dark:hover,
 input.dark:hover {
     cursor: pointer;
@@ -296,32 +298,32 @@ input.dark:hover {
 
 table {
     width: 100%;
-    /* 표의 너비 설정 */
+    /* �몴�쓽 �꼫鍮� �꽕�젙 */
     margin: 20px auto;
-    /* 위 아래 여백 20px, 좌우로 중앙 정렬 */
+    /* �쐞 �븘�옒 �뿬諛� 20px, 醫뚯슦濡� 以묒븰 �젙�젹 */
     border-collapse: collapse;
-    /* 표 셀의 경계선 합치기 */
+    /* �몴 ���쓽 寃쎄퀎�꽑 �빀移섍린 */
 }
 
 th,
 td {
     border: 1px solid #222224;
-    /* 셀 경계선 설정 */
+    /* �� 寃쎄퀎�꽑 �꽕�젙 */
     padding: 10px 15px;
-    /* 셀 내부 패딩 설정 */
+    /* �� �궡遺� �뙣�뵫 �꽕�젙 */
     text-align: center;
-    /* 텍스트 중앙 정렬 */
-    width: auto;  /* 셀의 너비를 고정값으로 설정 */
-    max-width: 150px; /* 셀의 최대 너비를 고정값으로 설정 */
+    /* �뀓�뒪�듃 以묒븰 �젙�젹 */
+    width: auto;  /* ���쓽 �꼫鍮꾨�� 怨좎젙媛믪쑝濡� �꽕�젙 */
+    max-width: 150px; /* ���쓽 理쒕� �꼫鍮꾨�� 怨좎젙媛믪쑝濡� �꽕�젙 */
 }
 
 th {
     background-color: #fbc328;
-    /* 헤더 배경색 설정 */
+    /* �뿤�뜑 諛곌꼍�깋 �꽕�젙 */
 }
 td {
     background-color: #fff;
-    /* 헤더 배경색 설정 */
+    /* �뿤�뜑 諛곌꼍�깋 �꽕�젙 */
 }
 
 td a {
@@ -350,6 +352,7 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 999;
 }
 
 .footer-content {
