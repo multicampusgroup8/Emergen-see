@@ -153,7 +153,7 @@
                     <c:forEach var="bVO" items="${list }">
                     	<tr>
                     		<td>${bVO.post_no }</td>
-                    		<td><a href='${pageContext.servletContext.contextPath }/board/view?post_no=${bVO.post_no}&nowPage=${pVO.nowPage}<c:if test='${pVO.searchText!=null}'>&searchKey=${pVO.searchKey }&searchText=${pVO.searchText }</c:if>'>${bVO.subject }</a></td>
+                    		<td><a href='${pageContext.servletContext.contextPath }/board/view?post_no=${bVO.post_no}&nowPage=${pVO.nowPage}<c:if test='${pVO.searchText!=null}'>&searchKey=${pVO.searchKey }&searchText=${pVO.searchText }</c:if><c:if test="${pVO.disasterType != null}">&disasterType=${pVO.disasterType }</c:if>'>${bVO.subject }</a></td>
                     		<td>${bVO.userid }</td>
                     		<td>${bVO.location }</td>
                     		<td>${bVO.writedate }</td>
