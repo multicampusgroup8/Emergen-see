@@ -20,7 +20,7 @@ public class BoardReplyController {
 	@Autowired
 	BoardReplyService service;
 	
-	// ´ñ±Û ¸ñ·Ï
+	// ëŒ“ê¸€ ëª©ë¡
 	@GetMapping("/list")
 	@ResponseBody
 	public List<BoardReplyVO> replyList(int post_no) {
@@ -28,7 +28,7 @@ public class BoardReplyController {
 		return replyList;
 	}
 	
-	// ´ñ±Û µî·Ï
+	// ëŒ“ê¸€ ë“±ë¡
 	@PostMapping("/write")
 	@ResponseBody
 	public String replyWrite(BoardReplyVO vo, HttpSession session) {
@@ -37,14 +37,14 @@ public class BoardReplyController {
 		return result+"";
 	}
 	
-	// ´ñ±Û ¼öÁ¤
+	// ëŒ“ê¸€ ìˆ˜ì •
 	@PostMapping("/editOk")
 	@ResponseBody
 	public String replyEditOk(BoardReplyVO vo) {
 		return service.replyUpdate(vo)+"";
 	}
 	
-	// ´ñ±Û»èÁ¦
+	// ëŒ“ê¸€ì‚­ì œ
 	@GetMapping("/delete")
 	@ResponseBody
 	public String replyDelete(int comment_no) {
