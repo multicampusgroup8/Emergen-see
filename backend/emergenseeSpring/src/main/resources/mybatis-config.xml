@@ -5,5 +5,7 @@
 <configuration>
   <typeAliases>
 		<typeAlias alias="UserVO" type="com.mulcam8.emergensee.vo.UserVO"/>
+		<typeAlias alias="BoardVO" type="com.mulcam8.emergensee.vo.BoardVO"/>
+		<typeAlias alias="CommentVO" type="com.mulcam8.emergensee.vo.CommentVO"/>
 	</typeAliases>
 </configuration>

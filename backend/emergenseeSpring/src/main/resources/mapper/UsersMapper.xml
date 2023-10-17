@@ -15,4 +15,18 @@
 		select count(*) from user where userid = #{userid}
 	</select>
 	
+	<select id="getBoardByUser" parameterType="String" resultType="BoardVO">
+        SELECT a.post_no,subject,a.contents,a.writedate,disasterType,location, IFNULL(b.cnt,0) as 'cnt'
+		from board as a left outer join(
+        select post_no, count(*) as cnt
+        from comment
+        group by post_no) as b
+        on a.post_no = b.post_no
+        where userid = #{userid}
+	</select>
+	<select id="getCommentByUser" parameterType="String" resultType="CommentVO">
+		select a.comment_no, a.contents, b.subject, a.writedate from comment as a, board b
+		where a.post_no = b.post_no
+		and a.userid=#{userid}
+	</select>
 </mapper>
