@@ -17,9 +17,40 @@ public class UserVO {
 	
 	private String terms;
 	private String userType;
+	private int admin;
 	
 	
 	
+	public Boolean getKakaonotification() {
+		return kakaonotification;
+	}
+
+
+	public void setKakaonotification(Boolean kakaonotification) {
+		this.kakaonotification = kakaonotification;
+	}
+
+
+	public String getInterests() {
+		return interests;
+	}
+
+
+	public void setInterests(String interests) {
+		this.interests = interests;
+	}
+
+
+	public int getAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(int admin) {
+		this.admin = admin;
+	}
+
+
 	public UserVO() {
 		// TODO Auto-generated constructor stub
 	}

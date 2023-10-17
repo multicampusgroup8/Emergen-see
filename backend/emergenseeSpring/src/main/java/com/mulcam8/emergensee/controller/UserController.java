@@ -36,9 +36,13 @@ public class UserController {
 			//아이디가 중복 된다.
 			 return "users/idDuplicateCheck";
 		}else if(result !=1 && vo.getConfirmpassword().equals(vo.getUserpwd())) {
+			if(vo.getUserType().equals("admin")) {
+				vo.setAdmin(1);
+			}
 			System.out.println("가입정보를 insert");
 			userServiceImpl.registerSubmit(vo);
 			System.out.println("가입완료되었습니다.");
+			
 
 			path = "users/register_ok";
 		}else {
@@ -81,6 +85,7 @@ public class UserController {
 		vo.setUserpwd(password);
 		
 		int result = userServiceImpl.loginCheck(vo);
+		int isAdmin = userServiceImpl.isAdminCheck(userid);
 		
 		if(result == 1) {
 //			if(keeplogin != null) {
@@ -91,10 +96,13 @@ public class UserController {
 //				
 //				response.addCookie(cookie);
 //			}
-			
+			System.out.println(vo.getAdmin());
 			HttpSession session = request.getSession();
 			session.setAttribute("logId", userid);
 			session.setAttribute("logStatus", "Y");
+			if(isAdmin == 1) {
+				session.setAttribute("isAdmin", "Y");
+			}
 			session.setMaxInactiveInterval(1200);
 			
 			

@@ -132,7 +132,8 @@
 					$(result).each(function(i, rVO){
 						tag += "<li><div><b>" + rVO.userid + "</b>(" + rVO.writedate +")";
 						
-
+						// 수정, 삭제 버튼은 로그읜 아이디와 글쓴이가 같을때 표시
+						// 서버에서 실행    클라이언트에서 실행 ( 달러$ 붙은 el표기법? 은 서버에서 실행되고 rVO는 자바스크립트로 실행(클라이언트 컴퓨터에서 실행))
 						if( '${logId}' == rVO.userid ){
 							tag += "<input type='button' value='Edit'/>";
 							tag += "<input type='button' value='Del' title='" +rVO.replyno+ "'/>";
@@ -140,7 +141,8 @@
 							// 댓글내용
 							tag += "<p>" + rVO.contents + "</p></div>";
 							
-							// 수정폼 
+							// 수정폼 -> 댓글 글번호, 댓글 내용이 폼에 있어야 한다
+							// Edit 클릭시 보여주어야 한다
 							tag += "<div style='display: none'><form method='post'>";
 							tag += "<input type='hidden' name='replyno' value='" + rVO.replyno + "' />"
 							tag += "<textarea name='contents' style='width: 400px; height: 80px;'>" + rVO.contents + "</textarea>";
@@ -160,7 +162,7 @@
 		}
 		// 등록
 		$("#replyForm").submit(function(){
-
+			// form태그의 action을 중지한다
 			event.preventDefault();		
 			
 	
@@ -174,7 +176,7 @@
 			
 	
 			$.ajax({
-				url : "${pageContext.servletContext.contextPath}/boardReply/write",
+				url : "/see/boardReply/write?userid='hong'",
 				data : params,
 				type : "POST",
 				success : function(result){
@@ -190,12 +192,12 @@
 		});
 		// 수정폼 보여주기
 		$(document).on('click','#replyList input[value=Edit]',function(){
-			$(this).parent().css('display','none'); 
-			$(this).parent().next().css('display','block'); 
+			$(this).parent().css('display','none'); 	// 부모 숨기기 (댓글내용)
+			$(this).parent().next().css('display','block'); 	// 댓글 수정폼
 		});
 		// 수정(DB)
 		$(document).on('submit','#replyList form', function(){
-			event.preventDefault(); 	
+			event.preventDefault(); 	// 기본이벤트 제거 
 			var params = $(this).serialize(); 	
 			var url = "${pageContext.servletContext.contextPath}/boardReply/editOk";
 			
@@ -205,10 +207,10 @@
 				type : "POST",
 				success : function(result){
 					console.log('댓글수정',result);
-					if(result=='0'){ 	
+					if(result=='0'){ 	// 댓글수정 안됨
 						alert('댓글수정 실패')
 					}else{
-						replyList(); 	
+						replyList(); 	// 댓글목록 다시 선택
 					}
 				},
 				error : function(e){
@@ -232,7 +234,7 @@
 					},
 					type : "GET",
 					success : function(result){
-						replyList(); 	
+						replyList(); 	// 댓글목록 생성 메소드
 					},
 					error : function(e){
 						console.log(e.responseText);
@@ -285,8 +287,9 @@
                 <div class="viewContents">
                    <span>${bVO.contents }</span>
                     <div class="viewBtns">
-                    	<a href="${pageContext.servletContext.contextPath }/board/list?nowPage=${pVO.nowPage}<c:if test="${pVO.searchText != null }&searchKey=${pVO.searchKey }&searchText=${pVO.searchText }"></c:if><c:if test="${pVO.disasterType != null }">&disasterType=${pVO.disasterType }</c:if>"><i class="fa-solid fa-bars"></i></a>
-                        <a href="javascript:alert('추천되었습니다.')" style="margin: 2px;"><i class="fa-regular fa-thumbs-up"></i></a>
+                    	<a href="${pageContext.servletContext.contextPath }/board/list?nowPage=${pVO.nowPage}<c:if test="${pVO.searchText != null }&searchKey=${pVO.searchKey }&searchText=${pVO.searchText }"></c:if><c:if test="${pVO.disasterType != null }&disasterType=${pVO.disasterType }"></c:if>"><i class="fa-solid fa-bars"></i></a>
+                        <a href="javascript:alert('추천되었습니다.')" style="margin: 2px;"><i class="fa-regular fa-share-from-square"></i></a>
+                        <a href="javascript:var url = window.document.location.href;alert(url); "><i class="fa-regular fa-heart"></i></a>
                         <a href="javascript:confirm('정말 신고하시겠습니까?.')"><i class="fa-solid fa-triangle-exclamation"></i></a>
                     </div>
                 </div>
@@ -294,13 +297,13 @@
             
             <!-- 댓글달기 -->
 			<div id="replyArea">
-				<c:if test="${logStatus == 'Y' }">
+<%-- 				<c:if test="${logStatus == 'Y' }"> --%>
 					<form method="POST" id="replyForm">
 						<input type="hidden" name="post_no" value="${bVO.post_no }">
 							<textarea name="contents" id="contents"></textarea>
 							<button>등록</button>
 					</form>
-				</c:if>
+<%-- 				</c:if> --%>
 			</div>
 			
 			<!-- 댓글목록 -->

@@ -9,6 +9,6 @@ public interface UserService {
 	public int loginCheck(UserVO vo) throws Exception;
 	public void registerSubmit(UserVO vo) throws Exception;
 	public int idDuplicateCheck(String userid) throws Exception;
-	//��й�ȣ ��Ȯ���ϱ�
+	public int isAdminCheck(String userid) throws Exception;
 	
 }

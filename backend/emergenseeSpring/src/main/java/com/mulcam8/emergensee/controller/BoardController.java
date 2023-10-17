@@ -25,10 +25,11 @@ public class BoardController {
 		
 		pVO.setTotalRecord(service.totalRecord(pVO));
 		
-		// list ì „ì²´ëª©ë¡ DBì¡°íšŒ 
+		// list ÀüÃ¼¸ñ·Ï DBÁ¶È¸ 
 		List<BoardVO> list = service.boardPageList(pVO);
 		mav.addObject("list",list);
 		mav.addObject("pVO",pVO);
+		System.out.println(list.toString());
 		mav.setViewName("board/boardList");
 		
 		return mav;
@@ -53,19 +54,20 @@ public class BoardController {
 		if(result>0) {
 			mav.setViewName("redirect:list");
 		}else {
-			mav.addObject("msg","ë“±ë¡");
+			mav.addObject("msg","µî·Ï");
 			mav.setViewName("board/boardResult");
 		}
 		return mav;
 	}
 	
-	// ê¸€ë‚´ìš© ë³´ê¸°
+	// ±Û³»¿ë º¸±â
 	@GetMapping("/board/view")
 	public ModelAndView boardView(int post_no, PagingVO pVO) {
+		
 		ModelAndView mav = new ModelAndView();
 		
-		service.hitCount(post_no); 					// ì¡°íšŒìˆ˜ ì¦ê°€
-		BoardVO bVO = service.boardSelect(post_no); // ë ˆì½”ë“œ ì„ íƒ
+		service.hitCount(post_no); 					// Á¶È¸¼ö Áõ°¡
+		BoardVO bVO = service.boardSelect(post_no); // ·¹ÄÚµå ¼±ÅÃ
 		mav.addObject("bVO",bVO);
 		mav.addObject("pVO",pVO);
 		mav.setViewName("board/boardView");
@@ -91,7 +93,7 @@ public class BoardController {
 		if(result>0) {
 			mav.setViewName("redirect:view?no="+vo.getPost_no());
 		}else {
-			mav.addObject("msg","ìˆ˜ì •");
+			mav.addObject("msg","¼öÁ¤");
 			mav.setViewName("board/boardResult");
 		}
 		return mav;

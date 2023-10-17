@@ -7,9 +7,12 @@
 	<select id="loginCheck" parameterType="UserVO" resultType="Int">
 		select count(*) from user where userid = #{userid} and userpwd = #{userpwd}
 	</select>
+	<select id="isAdminCheck" parameterType="String" resultType="Int">
+		select admin from user where userid = #{userid}
+	</select>
 	<insert id="registerSubmit" parameterType="UserVO">
-		  insert into user (userid, userpwd, username, email, addr, phone, kakaonotification, interests) 
-		  value(#{userid}, #{userpwd}, #{username}, #{email}, #{address},#{phone},#{kakaonotification},#{interests})
+		  insert into user (userid, userpwd, username, email, addr, phone, kakaonotification, interests, admin) 
+		  value(#{userid}, #{userpwd}, #{username}, #{email}, #{address},#{phone},#{kakaonotification},#{interests},#{admin})
 	</insert>
 	<select id="idDuplicateCheck" parameterType="String" resultType="Int">
 		select count(*) from user where userid = #{userid}

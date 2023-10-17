@@ -22,4 +22,7 @@ public class UserDAO {
 	public int idDuplicateCheck(String userid) throws Exception{
 		return mybatis.selectOne("User.idDuplicateCheck", userid);
 	}
+	public int isAdminCheck(String userid) throws Exception{
+		return mybatis.selectOne("User.isAdminCheck",userid);
+	}
 }

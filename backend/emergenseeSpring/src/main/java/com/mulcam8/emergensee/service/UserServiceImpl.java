@@ -25,5 +25,9 @@ public class UserServiceImpl implements UserService{
 	public int idDuplicateCheck(String userid) throws Exception {
 		return userDao.idDuplicateCheck(userid);
 	}
+	@Override
+	public int isAdminCheck(String userid) throws Exception {
+		return userDao.isAdminCheck(userid);
+	}
 	
 }
