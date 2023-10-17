@@ -10,11 +10,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지</title>
+    <title>Emergensee - 재난정보 커뮤니티</title>
     <script src="/emergensee/js/topButtonScript.js" defer></script>
     <script src="/emergensee/js/notification.js" defer></script>
-    <!-- 
-    <script src="/emergensee/js/checkLogin.js" defer></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c&libraries=clusterer"></script>
@@ -26,7 +24,7 @@
     <!-- 페이지 헤더: 로고 및 메인 네비게이션 포함 -->
     <header>
         <div></div>
-        <a href="${pageContext.servletContext.contextPath }/"><img id="logo" src="/emergensee/img/logo.png" alt="EMERGENSEE Logo"></a>
+        <a href="${pageContext.servletContext.contextPath }/"><img id="logo" src="/emergensee/img/logo_sample02.png" alt="EMERGENSEE Logo"></a>
     </header>
     <!-- 메인 네비게이션 섹션 -->
     <nav class="main-nav">
@@ -47,7 +45,7 @@
                 </div>
             </li>
             <li>
-                <a href="boardList.html">긴급상황게시판</a>
+                <a href="${pageContext.servletContext.contextPath }/board/list">긴급상황게시판</a>
                 <!-- 하위 메뉴 -->
                 <ul>
                     <li><a href="${pageContext.servletContext.contextPath }/board/list">전체보기</a></li>

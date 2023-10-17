@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
  <style>
         button#updateSettings {
@@ -51,31 +52,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td><a href="#">[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ [6]</a></td>
-                                <td>23.09.09.</td>
+                        <c:forEach var="item" items="${list}">
+                        	<tr>
+                                <td>${item.post_no}</td>
+                                <td><a href="#">[${item.location }] ${item.subject } [${item.cnt }]</a></td>
+                                <td>${item.writedate }</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><a href="#">[경기] 와 처서 지났는데 아직도 30도 넘음 ㄷㄷ [2]</a></td>
-                                <td>23.09.09.</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><a href="#">[전국] 열대야... 지구를 좀 더 소중히 여겨야 겠어요... [3]</a></td>
-                                <td>23.09.07.</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><a href="#">[경기] 헐 정전됨;;; [4]</a></td>
-                                <td>23.09.06.</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td><a href="#">[경기] 안녕하세요~ [5]</a></td>
-                                <td>23.09.06.</td>
-                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

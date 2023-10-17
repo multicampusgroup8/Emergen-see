@@ -3,6 +3,7 @@ package com.mulcam8.emergensee.service;
 import java.util.List;
 
 import com.mulcam8.emergensee.vo.BoardVO;
+import com.mulcam8.emergensee.vo.CommentVO;
 import com.mulcam8.emergensee.vo.PagingVO;
 
 public interface BoardService {
@@ -18,4 +19,7 @@ public interface BoardService {
 	public void hitCount(int no);
 	public int boardUpdate(BoardVO vo);
 	public int boardDelete(int post_no);
+	
+	public List<BoardVO> getBoardByUser(String userid);
+	public List<CommentVO> getCommentByUser(String userid);
 }

@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mulcam8.emergensee.dao.BoardDAO;
 import com.mulcam8.emergensee.mapper.BoardMapper;
 import com.mulcam8.emergensee.vo.BoardVO;
+import com.mulcam8.emergensee.vo.CommentVO;
 import com.mulcam8.emergensee.vo.PagingVO;
 
 @Service
@@ -15,7 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	BoardMapper mapper;
 	
-	
+	@Autowired
+	BoardDAO boardDao = new BoardDAO();
 
 	@Override
 	public String write() {
@@ -63,7 +67,15 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.boardTypeList(pVO);
 	}
 
-	
+	@Override
+	public List<BoardVO> getBoardByUser(String userid) {
+		return boardDao.getBoardByUser(userid);
+	}
+
+	@Override
+	public List<CommentVO> getCommentByUser(String userid) {
+		return boardDao.getCommentByUser(userid);
+	}
 	
 
 

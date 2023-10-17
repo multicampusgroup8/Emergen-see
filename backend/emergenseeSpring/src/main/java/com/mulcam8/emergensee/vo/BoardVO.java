@@ -14,6 +14,15 @@ public class BoardVO {
 	private String disasterType;
 	private String location;
 	private String user_user_no;
+	private int cnt;
+
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getPost_no() {
 		return post_no;
 	}

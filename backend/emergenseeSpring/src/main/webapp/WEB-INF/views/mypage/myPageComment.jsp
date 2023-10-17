@@ -51,30 +51,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td><a href="#">그러니까요ㅠ<br><span style="font-size: 0.8em;">[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ
-                                            [6]</span></a></td>
-                                <td>23.09.09.</td>
+                        <c:forEach var="item" items="${list}">
+                        	<tr>
+                                <td>${item.comment_no }</td>
+                                <td><a href="#">${item.contents }<br><span style="font-size: 0.8em;">글 제목 : ${item.subject }</span></a></td>
+                                <td>${item.writedate }</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><a href="#">저희 동네도 그래요 ㅠㅠㅠ<br><span style="font-size: 0.8em;">[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ
-                                            [6]</span></a></td>
-                                <td>23.09.09.</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><a href="#">아직 에어컨 못 끄는 중 ㅎ<br><span style="font-size: 0.8em;">[경기] 요즘 진짜 덥네요ㅠㅠㅠㅠ
-                                            [6]</span></a></td>
-                                <td>23.09.09.</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><a href="#">지구야 아프지마<br><span style="font-size: 0.8em;">[전국] 열대야... 지구를 좀 더 소중히 여겨야
-                                            겠어요... [3]</span></a></td>
-                                <td>23.09.07.</td>
-                            </tr>
+                        </c:forEach>
+
                         </tbody>
                     </table>
                 </div>
