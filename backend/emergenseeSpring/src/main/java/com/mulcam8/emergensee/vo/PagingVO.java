@@ -1,6 +1,5 @@
 package com.mulcam8.emergensee.vo;
 
-
 import lombok.ToString;
 
 // 페이지정보, 검색어
