@@ -11,10 +11,15 @@
 		width: 100%;
 		padding: 6px 10px;
 	}
+	
+	#content {
+		width: 100%;
+		height: 200px;
+	}
 </style>
-<link rel="stylesheet" href="/see/css/ckeditor.css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/css/ckeditor.css">
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
-<script src="/see/js/ckeditor.js"></script>
+<script src="${pageContext.servletContext.contextPath }/js/ckeditor.js"></script>
 <script>
 	window.onload = function() {
 		CKEDITOR.ClassicEditor.create(document.getElementById("content"), option);
