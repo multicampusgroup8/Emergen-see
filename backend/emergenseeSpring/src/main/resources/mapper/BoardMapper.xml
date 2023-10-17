@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	<select id="boardSelect" resultType="com.mulcam8.emergensee.vo.BoardVO">
+	<select id="boardSelect" parameterType="int" resultType="com.mulcam8.emergensee.vo.BoardVO">
 		select * from board
 		where post_no=${param1}
 	</select>	
